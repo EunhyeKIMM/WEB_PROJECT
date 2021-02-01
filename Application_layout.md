@@ -89,6 +89,7 @@
 | video_type   | boolean      | Not null, value In ('d', 'm') | 영화와 드라마 구분  |
 | video_id     | integer      | Not null, pk, Auto Increment  | Primary Key         |
 | recommend    | integer      | Not null                      | 영상이 추천 받은 수 |
+| grade        | integer      | Not null                      | 영상 관람 연령 등급 |
 
 
 
@@ -109,20 +110,21 @@
 
 ### User table
 
-| 컬럼명        | 타입         | 제약조건 | 설명                |
-| ------------- | ------------ | -------- | ------------------- |
-| user_id       | varchar(50)  | Not null | 아이디, Primary Key |
-| password      | varchar(128) | Not null | 비밀번호            |
-| age           | integer      | Not null | 나이                |
-| gender        | boolean      | Not null | 성별                |
-| phone_number  | varchar(120) | Not null | 전화번호            |
-| email         | email        | Not null | 이메일              |
-| name          | varchar(150) | Not null | 실명                |
-| joined_dt     | date         | Not null | 가입 일자           |
-| is_superviser | TINYINY      | Not null | 관리자 여부         |
-| last_login    | date         | Not null | 최근 로그인 일자    |
-| is_staff      | TINYINY      | Not null | 직원 여부           |
-| is_active     | TINYINY      | Not null | 로그인 허용 여부    |
+| 컬럼명        | 타입         | 제약조건 | 설명                     |
+| ------------- | ------------ | -------- | ------------------------ |
+| user_id       | varchar(50)  | Not null | 아이디, Primary Key      |
+| password      | varchar(128) | Not null | 비밀번호                 |
+| age           | integer      | Not null | 나이                     |
+| gender        | boolean      | Not null | 성별                     |
+| phone_number  | varchar(120) | Not null | 전화번호                 |
+| email         | email        | Not null | 이메일                   |
+| name          | varchar(150) | Not null | 실명                     |
+| joined_dt     | date         | Not null | 가입 일자                |
+| is_superviser | TINYINY      | Not null | 관리자 여부              |
+| last_login    | date         | Not null | 최근 로그인 일자         |
+| is_staff      | TINYINY      | Not null | 직원 여부                |
+| is_active     | TINYINY      | Not null | 로그인 허용 여부         |
+| bookmark      | integer_list | null     | 찜하기 기능, Foreign Key |
 
 
 
@@ -134,7 +136,7 @@
 
 
 
-
+![ERD2](Application_layout.assets/ERD2.JPG)
 
 
 
