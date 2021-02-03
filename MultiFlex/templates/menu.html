@@ -17,17 +17,21 @@
                   <a class="nav-link text-white" href="#">Dramas</a>
               </li>
           </ul>
-     
-          <nav class="navbar navbar-transparent">
-            <a href="javascript:void()" class="btn btn-outline-info ml-auto mr-auto font-weight-bold" id="theme-toggler"
-             onclick="toggleTheme()"></a>
-            </nav>
-
-
+        
+        <ul class="navbar-nav">
+        <input type="button" value="dark" onclick="
+            document.querySelector('body').style.backgroundColor='#303031';
+            document.querySelector('body').style.color='white';
+            ">
+        <input type="button" value="light" onclick="
+            document.querySelector('body').style.backgroundColor='white';
+            document.querySelector('body').style.color='black';
+        ">
+        </ul>
 
           <ul class="nav navbar-nav navbar-right">
               <li class="nav-item dropdown btn btn-secondary">
-                  <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown"><i class="far fa-user"></i>admin</a>
+                  <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown"><i class="fas fa-user"></i> admin</a>
                   <div class="dropdown-menu">
                       <a class="dropdown-item" href="#">Mypage</a>
                       <a class="dropdown-item" href="#">Logout</a>
@@ -39,11 +43,7 @@
 
 
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <br><br><h1>영화 포스터</h1>      
-    
-</div>
+
 
 
 

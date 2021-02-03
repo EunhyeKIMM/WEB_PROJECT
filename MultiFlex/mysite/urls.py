@@ -16,10 +16,8 @@ Including another URLconf
 from os import name
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
-    path('', HomeView.as_view, name='home'),
 ]
