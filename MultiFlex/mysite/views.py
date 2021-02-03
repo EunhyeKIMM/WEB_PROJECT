@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import AccessMixin
+from django.views.generic import TemplateView
 
 
 class OwnerOnlyMixin(AccessMixin):
@@ -11,3 +12,7 @@ class OwnerOnlyMixin(AccessMixin):
             self.handle_no_permission()     # 예외 발생
 
         return super().get(request, *args, **kwargs)
+
+
+class Homeview(TemplateView):
+    template_name = 'home.html'
