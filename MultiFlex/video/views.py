@@ -10,16 +10,22 @@ from mysite.views import OwnerOnlyMixin
 
 
 
-class VideoUploadView(LoginRequiredMixin, CreateView):
+class VideoUploadView(CreateView):
     model = Video
-  
-
-class VideoUpdateView(OwnerOnlyMixin, UpdateView):
-    model = Video
-  
+    template_name = 'video/video_upload_form.html'
+    fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade' ]
+    success_url = reverse_lazy('video:upload_Video') # 추후에 Detail로 변경 
 
 
-class VideoDeleteView(OwnerOnlyMixin, DeleteView):
+class VideoUpdateView(UpdateView):
     model = Video
- 
+    template_name = 'video/video_upload_form.html'
+    fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade' ]
+    success_url = reverse_lazy('video:upload_Video')
+
+
+class VideoDeleteView(DeleteView):
+    model = Video
+    template_name = 'video/video_delete_confirm.html'
+    success_url = reverse_lazy('video:upload_Video')
 

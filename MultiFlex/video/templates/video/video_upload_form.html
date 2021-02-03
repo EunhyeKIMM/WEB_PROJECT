@@ -1,0 +1,79 @@
+{% extends "base.html" %} 
+{% load widget_tweaks %} 
+
+{% block title %}video_upload_from.html{% endblock %}
+
+{% block content %}
+    <h1>동영상 업로드</h1>
+    <p>동영상을 업로드 해주세요.</p> 
+    
+    {% if form.errors %} 
+    <div class="alert alert-danger"> 
+        <div class="font-weight-bold">
+            Wrong! Please correct the error(s) below.</div> 
+        {{ form.errors }} 
+    </div> 
+    {% endif %}
+    <form action="." method="post" enctype="multipart/form-data" class="card pt-3">{% csrf_token %} 
+        <div class="form-group row"> 
+            {{ form.title|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-5"> 
+                {{ form.title|add_class:"form-control"|attr:"autofocus" }} 
+            </div> 
+        </div> 
+        <div class="form-group row"> 
+            {{ form.description|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-8"> 
+                {{ form.description|add_class:"form-control" }}
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            {{ form.release_dt|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-8"> 
+                {{ form.release_dt|add_class:"form-control" }}
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            {{ form.genre|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-8"> 
+                {{ form.genre|add_class:"form-control" }}
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            {{ form.running_time|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-8"> 
+                {{ form.running_time|add_class:"form-control" }}
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            {{ form.director|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-8"> 
+                {{ form.director|add_class:"form-control" }}
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            {{ form.video_type|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-8"> 
+                {{ form.video_type|add_class:"form-control" }}
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            {{ form.grade|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+            <div class="col-sm-8"> 
+                {{ form.grade|add_class:"form-control" }}
+            </div> 
+        </div>
+        <div class="form-group"> 
+            <div class="offset-sm-2 col-sm-5"> 
+                <input type="submit" value="Submit" class="btn btn-info"/> 
+            </div> 
+        </div>
+    </form> 
+{% endblock %}
+
+{% block extra-script %} 
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> 
+    <script> 
+        tinymce.init({ selector:'textarea', menubar: false, statusbar: false, toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat' }); 
+    </script>
+{% endblock %}
