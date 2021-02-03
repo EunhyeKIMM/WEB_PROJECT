@@ -1,5 +1,5 @@
 from django.db import models
-from video.models import Video
+
 
 # Create your models here.
 
@@ -22,7 +22,7 @@ class User(models.Model):
     is_active = models.BooleanField(default=True, verbose_name='ID 활성화 여부')
     is_admin = models.BooleanField(default=False, verbose_name='관리자 여부')
     is_staff = models.BooleanField(default=False, verbose_name="직원 여부")
-    bookmark = models.ForeignKey(Video, on_delete=models.CASCADE)
+    bookmark = models.CharField(verbose_name="찜한 영상", max_length=50, null=True, blank=True)
     
     def __str__(self):
         return self.user_id
