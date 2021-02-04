@@ -4,9 +4,11 @@
 {% block title %}video_upload_from.html{% endblock %}
 
 {% block content %}
-    <h1>동영상 업로드</h1>
-    <p>동영상을 업로드 해주세요.</p> 
-    
+    <center>
+        <h1>동영상 업로드</h1>
+        <p>동영상을 업로드 해주세요.</p> 
+    </center>
+
     {% if form.errors %} 
     <div class="alert alert-danger"> 
         <div class="font-weight-bold">
@@ -14,7 +16,7 @@
         {{ form.errors }} 
     </div> 
     {% endif %}
-    <form action="." method="post" enctype="multipart/form-data" class="card pt-3">{% csrf_token %} 
+    <form action="." method="post" enctype="multipart/form-data" class="card pt-3" style="background-color: #383844;">{% csrf_token %} 
         <div class="form-group row"> 
             {{ form.title|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-5"> 

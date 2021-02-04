@@ -8,5 +8,7 @@ urlpatterns = [
 
      path('<int:pk>/updateVideo/', VideoUpdateView.as_view(), name="update_Video"), 
 
-     path('<int:pk>/deleteVideo/', VideoDeleteView.as_view(), name="delete_Video"), 
+     path('<int:pk>/deleteVideo/', VideoDeleteView.as_view(), name="delete_Video"),
+
+     path('<str:video_type>/videoList/', VideoTypeView.as_view(), name="show_video_type"), 
 ]

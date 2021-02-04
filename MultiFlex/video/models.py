@@ -28,5 +28,10 @@ class Video(models.Model):
     recommend = models.PositiveIntegerField(verbose_name="추천수", default=0)
     grade = models.CharField(verbose_name="영화등급", max_length=30, choices=GRADE)
 
+    class Meta:
+        verbose_name = 'video'
+        verbose_name_plural = 'videos'
+        
+
     def __str__(self):
         return self.title
