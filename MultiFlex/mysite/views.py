@@ -1,6 +1,5 @@
+from django.views.generic import TemplateView, FormView
 from django.contrib.auth.mixins import AccessMixin
-from django.views.generic import TemplateView
-
 
 class OwnerOnlyMixin(AccessMixin):
     raise_exception = True
@@ -16,3 +15,12 @@ class OwnerOnlyMixin(AccessMixin):
 
 class Homeview(TemplateView):
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        theme = self.request.GET.get('theme')
+        if theme : 
+            self.request.session['theme']=theme
+        return super().get_context_data(**kwargs)
+
+class SearchFormView(FormView):
+    pass
