@@ -28,6 +28,8 @@ class Video(models.Model):
     recommend = models.PositiveIntegerField(verbose_name="추천수", default=0)
     grade = models.CharField(verbose_name="영화등급", max_length=30, choices=GRADE)
     video_link = models.URLField(verbose_name="URL", max_length=350)
+    vthumbnail = models.ImageField('IMAGE', upload_to ='static/images/', null=True)
+
 
     class Meta:
         verbose_name = 'video'

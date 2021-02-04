@@ -4,12 +4,23 @@
 
 {% block content %}
 
-    <h1>video type</h1>
-    <br>
+    <center>
+        <h1>{{ type }}</h1>
+        <br>
+        {% for video in video_list %}
+            <h3>{{ video.title }}</a></h3>
+        {% endfor %}
+        <br>
+    </center>
     {% for video in video_list %}
-        <h3>{{ video.title }}</a></h3>
+    <div class="card" style="width:400px">
+        <img class="card-img-top" src ="https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=184517#">
+        <div class="card-body">
+            <h4 class="card-title">{{ video.title }}</h4>
+            <p class="card-text">{{ video.description }}</p>
+        <a href ="#" class="btn btn-primary">watch</a>
+        </div>
+    </div>
     {% endfor %}
-    <br>
-    
-
+        
 {% endblock %}

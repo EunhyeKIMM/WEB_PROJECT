@@ -1,3 +1,4 @@
+from django.db.models import fields
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (ListView, DetailView, TemplateView,
                                 FormView, CreateView, UpdateView, DeleteView)
@@ -10,7 +11,7 @@ from mysite.views import OwnerOnlyMixin
 class VideoUploadView(CreateView):
     model = Video
     template_name = 'video/video_upload_form.html'
-    fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade' ]
+    fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade', 'video_link' ]
     success_url = reverse_lazy('video:upload_Video') # 추후에 Detail로 변경 
 
 
@@ -33,9 +34,19 @@ class VideoTypeView(ListView):
     template_name = 'video/video_type.html'
 
     def get_queryset(self):
-        # some = self.kwargs
         return Video.objects.filter(video_type=self.kwargs.get('video_type'))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['type'] = self.kwargs.get('video_type')      
+        return context
 
+class PhotoView(DetailView):
+    model = Video
+    fields = ['vthumbnail']
+
+    def get_queryset(self):        
+        return Video.objects.filter(video_id=self.kwargs.get('video_id'))
 
 
 class VideoLV(ListView):

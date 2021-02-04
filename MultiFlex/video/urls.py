@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from video.views import *
 
 app_name = 'video'
 
@@ -12,7 +12,9 @@ urlpatterns = [
 
     path('<str:video_type>/videoList/', VideoTypeView.as_view(), name="show_video_type"), 
     # 실험
-    path('',views.VideoLV.as_view(), name='index'),
+    path('', VideoLV.as_view(), name='index'),
     # detail
-    path('<int:pk>/', views.VideoDV.as_view(), name='video_detail'),
+    path('<int:pk>/', VideoDV.as_view(), name='video_detail'),
+
+    path('<str:video_type>/videoList/<int:video_id>', PhotoView.as_view(), name="show_photo"),
 ]

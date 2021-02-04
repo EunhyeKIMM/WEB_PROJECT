@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %} 
+{% load widget_tweaks %} 
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
-    </script>
+{% block title %}video_upload_from.html{% endblock %}
 
-</head>
-
-<body>
+{% block content %}
     <div class='container-fluid full-width'>
         <div>
             <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
@@ -34,6 +22,5 @@
         </div>
     </div>
 
-</body>
+{% endblock %}
 
-</html>
