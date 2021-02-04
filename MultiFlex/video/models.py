@@ -27,6 +27,7 @@ class Video(models.Model):
     video_type = models.CharField(verbose_name="구분", max_length=30, choices=VIDEO_TYPE)
     recommend = models.PositiveIntegerField(verbose_name="추천수", default=0)
     grade = models.CharField(verbose_name="영화등급", max_length=30, choices=GRADE)
+    video_link = models.URLField(verbose_name="URL", max_length=350)
 
     class Meta:
         verbose_name = 'video'

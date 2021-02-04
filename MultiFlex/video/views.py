@@ -1,13 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import (ListView, DetailView, TemplateView,
                                 FormView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from video.models import *
 from django.urls import reverse_lazy
 from mysite.views import OwnerOnlyMixin 
-
-
-
 
 
 class VideoUploadView(CreateView):
@@ -38,3 +35,24 @@ class VideoTypeView(ListView):
     def get_queryset(self):
         # some = self.kwargs
         return Video.objects.filter(video_type=self.kwargs.get('video_type'))
+
+
+
+class VideoLV(ListView):
+    model = Video
+    template_name = 'video/index.html'
+    #context_object_name = 'videos' # video_list
+
+# def video_list(request):
+#     latest_video_list = Video.objects.all
+
+#     context = {'latest_video_list' : latest_video_list}
+
+#     return render(request, 'video/index.html',context)
+
+class VideoDV(DetailView):
+    model = Video
+    context_object_name = 'video'
+    template_name = 'video/video_detail.html'
+    
+        
