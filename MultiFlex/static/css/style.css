@@ -1,12 +1,20 @@
 .dark
 {
     color:white;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.856);
     
+        
 }
+
+.dark .form-signin {
+    border: 1px solid #f9f7f762;
+}
+
+
+
 .light
 {
     color:black;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.788);
     
 }
