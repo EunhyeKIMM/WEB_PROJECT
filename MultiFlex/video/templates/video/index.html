@@ -1,9 +1,16 @@
-{% if video_list %}
+{% extends "base.html" %}
+{% block title %}index.html{% endblock %}
+
+{% block content %}
+{% if videos %}
     <ul>
-        {% for video in video_list %}
+        {% for video in videos %}
             <li><a href = '{{video.video_id}}'>{{video.title}} </a></li>
         {% endfor %}
+        
     </ul>
 {% else %}
     <p>No video is available</p>
 {% endif %}
+
+{% endblock %}

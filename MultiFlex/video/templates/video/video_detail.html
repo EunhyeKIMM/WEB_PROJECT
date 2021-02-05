@@ -1,26 +1,43 @@
-{% extends "base.html" %} 
-{% load widget_tweaks %} 
-
-{% block title %}video_upload_from.html{% endblock %}
+{% extends "base.html" %}
+{% block title %}video_tail.html{% endblock %}
 
 {% block content %}
-    <div class='container-fluid full-width'>
-        <div>
-            <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-        </div>
-        <div class="form-row float-right">
-            <button type="button" class="btn btn-outline-danger">추천</button>  
-               <button type="button" class="btn btn-outline-danger">찜하기</button>
-        </div>
-        <div>
-            <h1>{{video.title}} </h1>
-            <h2>장르 : {{video.genre}} | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | {{video.running_time}}
-            </h2>
-            <h3>{{video.description}}</h3>
-        </div>
+<div class='container-fluid full-width'>
+    <div>
+        <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+    </div>
+    <div class="form-row float-right">
+        <button type="button" class="btn btn-outline-danger">추천</button>
+        <button type="button" class="btn btn-outline-danger">찜하기</button>
+    </div>
+    <div>
+        <h1>{{video.title}} </h1>
+        <h2>장르 : {{video.genre}} | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | 러닝타임 :
+            {{video.running_time}}분
+        </h2>
+        <h3>{{video.description}}</h3>
     </div>
 
-{% endblock %}
+    {% for review in page_obj %}
+    <h1>
+        <li><a href='#'>{{review.re_title}} </a>
+    </h1> (작성자 : {{review.user_id}})</li>
+    {{review.content|safe}}
+    {% endfor %}
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+            {% endif %}
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+            {% endif %}
+        </span>
+    </div>
 
+
+</div>
+{% endblock %}
