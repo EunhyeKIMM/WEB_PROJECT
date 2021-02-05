@@ -141,3 +141,4 @@ MEDIA_URL = '/medaa/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/' # 로그인 성공시 리다이렉트할 URL
+AUTH_USER_MODEL = 'user.User'
