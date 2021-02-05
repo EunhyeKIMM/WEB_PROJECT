@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- <link rel="stlyesheet" type="text/css" href="{%static 'login_css.css'%}"> -->
     <link rel="stylesheet" type= "text/css" href="{%static 'css/style.css'%}">
-    
+    <!-- <link rel="stylesheet" type= "text/css" href="{%static 'css/container.css'%}"> -->
+    {% block extra-style %}{% endblock %}
 </head>
 
 <body style="padding-top:90px;" class="{{request.session.theme}}">
     {% include 'menu.html' %}
-    <div class="container">
+    <div class="container-fluid">
         {% block content%}{% endblock %}
     </div>
 </body>

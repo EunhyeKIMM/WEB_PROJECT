@@ -11,7 +11,7 @@ from mysite.views import OwnerOnlyMixin
 class VideoUploadView(CreateView):
     model = Video
     template_name = 'video/video_upload_form.html'
-    fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade', 'video_link' ]
+    fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade', 'video_link', 'video_thumb' ]
     success_url = reverse_lazy('video:upload_Video') # 추후에 Detail로 변경 
 
 
@@ -32,6 +32,7 @@ class VideoDeleteView(DeleteView):
 class VideoTypeView(ListView):
     model = Video
     template_name = 'video/video_type.html'
+    success_url = reverse_lazy('video:video_detail')
 
     def get_queryset(self):
         return Video.objects.filter(video_type=self.kwargs.get('video_type'))

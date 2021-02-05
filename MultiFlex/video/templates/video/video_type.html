@@ -2,25 +2,51 @@
 
 {% block title %}video_type.html{% endblock %}
 
+{% block extra-style %}
+    <style>
+        
+            .grid-container {
+                position: relative;
+                display: inline-grid;
+                grid-template-columns: auto auto auto auto;
+                grid-row-gap: 80px;
+                background-color: black;
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+            .grid-item {
+                background-color: rgba(0, 0, 0, 0.8);
+                border: 0px solid rgba(0, 0, 0, 0.8);
+                padding: 0;
+                font-size: 30px;
+                text-align: center;
+            }
+        
+    </style>
+{% endblock %}
+
 {% block content %}
 
     <center>
-        <h1>{{ type }}</h1>
+        <h1><strong>{{ type }}</strong></h1>
         <br>
-        {% for video in video_list %}
-            <h3>{{ video.title }}</a></h3>
-        {% endfor %}
-        <br>
-    </center>
-    {% for video in video_list %}
-    <div class="card" style="width:400px">
-        <img class="card-img-top" src ="https://occ-0-993-3996.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABepJ5xOBNcaaLcuDujTbnC3EWxmPmA-MwwabHt8S7bG9jJZLmdkay-tT3bo1SA4VYP9UO2kI9e9">
-        <div class="card-body">
-            <h4 class="card-title">{{ video.title }}</h4>
-            <p class="card-text">{{ video.description }}</p>
-        <a href ="#" class="btn btn-primary">watch</a>
+        
+        <div class="grid-container">
+            {% for video in video_list %}
+                <div class="grid-item">
+                    <button type="button" class="btn btn-light" style="padding: 0%;">
+                        <div class="card" style="width:400px">
+                            <a href="{{video.get_absolute_url}}">
+                                <img class="card-img-top" src ="{{ video.video_thumb }}">
+                            </a> 
+                        </div>
+                    </button>
+                </div>
+            {% endfor %}
         </div>
-    </div>
-    {% endfor %}
+    </center>
+    
+
         
 {% endblock %}
