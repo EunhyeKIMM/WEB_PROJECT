@@ -15,6 +15,4 @@ urlpatterns = [
     path('', VideoLV.as_view(), name='index'),
     # detail
     path('<int:pk>/', VideoDV.as_view(), name='video_detail'),
-
-    path('<str:video_type>/videoList/<int:video_id>', PhotoView.as_view(), name="show_photo"),
 ]
