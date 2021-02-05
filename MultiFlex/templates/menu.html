@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">
         <a href="#"><img src="https://fontmeme.com/permalink/210205/8ecac24b2447b0018a4bc2430c375bae.png" alt="netflix-type" border="0"></a></span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -6,21 +6,21 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item mx-1 btn btn-secondary">
+        <ul class="navbar-nav btn-dark">
+            <li class="nav-item btn btn-dark">
                 <a class="nav-link text-white" href="#">Categories</a>
             </li>
-            <li class="nav-item mx-1 btn btn-secondary">
+            <li class="nav-item btn btn-dark">
                 <a class="nav-link text-white" href="#">Movies</a>
             </li>
-            <li class="nav-item mx-1 btn btn-secondary">
+            <li class="nav-item btn btn-dark">
                 <a class="nav-link text-white" href="#">Dramas</a>
             </li>
         </ul>
 
 
-        <ul class="navbar-nav ml-5 mr-5">
-            <li class="nav-item dropdown mx-1 btn btn-secondary">
+        <div class="navbar-nav">
+            <li class="nav-item dropdown ml-auto mr-auto btn-dark">
                 {% if user.is_active %}
                 <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
                     <i class="fas fa-user"></i>
@@ -39,6 +39,6 @@
                 </div>
                     {% endif %}
             </li>
-        </ul>
+        </div>
     </div>
 </nav>
