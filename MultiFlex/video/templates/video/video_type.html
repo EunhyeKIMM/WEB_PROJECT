@@ -3,26 +3,57 @@
 {% block title %}video_type.html{% endblock %}
 
 {% block extra-style %}
-    <style>
-        
+    <style>       
+        .grid-container {
+            position: relative;
+            display: inline-grid;
+            grid-template-columns: auto auto auto auto;
+            grid-row-gap: 80px;
+            background-color: black;
+            padding: 10px;
+            offset-block-end: 10px;
+            margin: 0%;
+            }
+        .grid-item {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 0px solid rgba(0, 0, 0, 0.8);
+            padding: 0;
+            font-size: 30px;
+            text-align: center;
+            }
+        @media(max-width: 1600px) {
             .grid-container {
-                position: relative;
                 display: inline-grid;
-                grid-template-columns: auto auto auto auto;
+                grid-template-columns: auto auto auto;
                 grid-row-gap: 80px;
                 background-color: black;
                 padding: 10px;
                 offset-block-end: 10px;
                 margin: 0%;
             }
-            .grid-item {
-                background-color: rgba(0, 0, 0, 0.8);
-                border: 0px solid rgba(0, 0, 0, 0.8);
-                padding: 0;
-                font-size: 30px;
-                text-align: center;
+        }
+        @media(max-width: 1200px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto auto;
+                grid-row-gap: 80px;
+                background-color: black;
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
             }
-        
+        }    
+        @media(max-width: 800px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto;
+                grid-row-gap: 80px;
+                background-color: black;
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+        }
     </style>
 {% endblock %}
 
