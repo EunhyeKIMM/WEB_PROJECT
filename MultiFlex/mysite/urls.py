@@ -20,5 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
-    path('video/',include('video.urls')),
+
+    path('review/', include('review.urls')),
+    path('video/', include('video.urls')),
 ]

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}video_type.html{% endblock %}
+
+{% block extra-style %}
+    <style>       
+        .grid-container {
+            position: relative;
+            display: inline-grid;
+            grid-template-columns: auto auto auto auto;
+            grid-row-gap: 80px;
+            background-color: black;
+            padding: 10px;
+            offset-block-end: 10px;
+            margin: 0%;
+            }
+        .grid-item {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 0px solid rgba(0, 0, 0, 0.8);
+            padding: 0;
+            font-size: 30px;
+            text-align: center;
+            }
+        @media(max-width: 1600px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                grid-row-gap: 80px;
+                background-color: black;
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+        }
+        @media(max-width: 1200px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto auto;
+                grid-row-gap: 80px;
+                background-color: black;
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+        }    
+        @media(max-width: 800px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto;
+                grid-row-gap: 80px;
+                background-color: black;
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <center>
+        <h1><strong>{{ type }}</strong></h1>
+        <br>
+        
+        <div class="grid-container">
+            {% for video in video_list %}
+                <div class="grid-item">
+                    <button type="button" class="btn btn-light" style="padding: 0%;">
+                        <div class="card" style="width:400px">
+                            <a href="{{video.get_absolute_url}}">
+                                <img class="card-img-top" src ="{{ video.video_thumb }}">
+                            </a> 
+                        </div>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </center>
+    
+
+        
+{% endblock %}
