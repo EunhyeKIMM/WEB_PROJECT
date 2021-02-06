@@ -20,8 +20,8 @@ class Homeview(TemplateView):
 
 class UserCreateView(CreateView):
     model = User
-    # form_class = UserCreationForm
-    fields = ['email', 'password', 'age', 'gender', 'phone', 'name']
+    form_class = UserCreationForm
+    # fields = ['email', 'password', 'age', 'gender', 'phone', 'name']
     template_name = 'registration/register.html'
     success_url = reverse_lazy('register_done')
 
