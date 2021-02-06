@@ -8,4 +8,5 @@ urlpatterns = [
     path('',views.VideoLV.as_view(), name='index'),
     # detail
     path('<int:pk>/', views.VideoDV.as_view(), name='video_detail'),
+    
 ]
