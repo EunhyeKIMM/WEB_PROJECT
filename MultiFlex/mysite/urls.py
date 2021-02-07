@@ -23,8 +23,9 @@ urlpatterns = [
     # path('', Homeview.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
-    path('video/',include('video.urls')),
     path('user/', include('user.urls')),
+    path('review/', include('review.urls')),
+    path('video/', include('video.urls')),
     path('', home),
     # 로그인, 로그아웃, 비밀번호 변경 담당
     # path('accounts/', include('django.contrib.auth.urls')),
@@ -33,4 +34,6 @@ urlpatterns = [
     # # 회원 가입 및 처리
     # path('accounts/register/', UserCreateView.as_view(), name='register'),
     # path('accounts/register/done/', UserCreateDoneTV.as_view(), name='register_done'),
+
+
 ]
