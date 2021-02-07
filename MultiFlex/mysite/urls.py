@@ -16,20 +16,21 @@ Including another URLconf
 from os import name
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import Homeview, UserCreateView, UserCreateDoneTV
+from mysite.views import Homeview
+from user.views import home
 
 urlpatterns = [
-    path('', Homeview.as_view(), name='home'),
+    # path('', Homeview.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('video/',include('video.urls')),
-
-
+    path('user/', include('user.urls')),
+    path('', home),
     # 로그인, 로그아웃, 비밀번호 변경 담당
-    path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
 
 
-    # 회원 가입 및 처리
-    path('accounts/register/', UserCreateView.as_view(), name='register'),
-    path('accounts/register/done/', UserCreateDoneTV.as_view(), name='register_done'),
+    # # 회원 가입 및 처리
+    # path('accounts/register/', UserCreateView.as_view(), name='register'),
+    # path('accounts/register/done/', UserCreateDoneTV.as_view(), name='register_done'),
 ]
