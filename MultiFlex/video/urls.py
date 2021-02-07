@@ -13,11 +13,6 @@ urlpatterns = [
     path('<str:video_type>/videoList/', VideoTypeView.as_view(), name="show_video_type"), 
     # 실험
     path('', VideoLV.as_view(), name='index'),
-    # detail
-<<<<<<< HEAD
-    path('<int:pk>/', views.VideoDV.as_view(), name='video_detail'),
     
-=======
-    path('<int:pk>/', VideoDV.as_view(), name='video_detail'),
->>>>>>> master
+    
 ]
