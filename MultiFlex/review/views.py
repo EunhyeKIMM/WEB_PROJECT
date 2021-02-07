@@ -5,33 +5,41 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from review.models import *
 from django.urls import reverse_lazy
 from mysite.views import OwnerOnlyMixin 
+from video.models import *
 
 
-
-
-
+# 비디오디테일 성공 시 삭제 
 class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
     template_name = 'review/review_upload_form.html'
     fields = ['re_title', 'content' ]
-    success_url = reverse_lazy('review:update_review') # 추후에 Detail로 변경 
+    success_url = reverse_lazy('video.get_absolute_url') 
 
     def form_invalid(self, form):
-        # form.instance.user_id_id = 2
-        # form.instance.video_id_id = 8
         # return HttpResponseRedirect(self.get_success_url())
         response = super().form_valid(form) # Review 모델 저장, self.object
 
+    def get_context_data(self, **kwargs):
+        save_fk = self.get_object()
+        save_fk.user_id = self.request.user
+        return super().get_context_data(**kwargs)
 
-class ReviewUpdateView(OwnerOnlyMixin, UpdateView):
+
+# OwneronlyMixin 추가 해야함 !
+
+class ReviewUpdateView(UpdateView):
     model = Review
     template_name = 'review/review_upload_form.html'
     fields = ['re_title', 'content' ]
-    success_url = reverse_lazy('review:add_review')
+
+    def get_success_url(self):
+        return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})
 
 
-class ReviewDeleteView(OwnerOnlyMixin, DeleteView):
+class ReviewDeleteView(DeleteView):
     model = Review
     template_name = 'review/review_delete_confirm.html'
     success_url = reverse_lazy('review:add_review')
 
+    def get_success_url(self):
+        return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})

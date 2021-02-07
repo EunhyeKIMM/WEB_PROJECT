@@ -1,13 +1,16 @@
 from django.db.models import fields
-from django.shortcuts import render, get_object_or_404
+from django.http import response
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import (ListView, DetailView, TemplateView,
                                 FormView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormMixin
 from video.models import *
 from django.urls import reverse_lazy
 from mysite.views import OwnerOnlyMixin 
 from django.core.paginator import Paginator
-
+from review.models import *
+from video.form import ReviewForm
 
 class VideoUploadView(CreateView):
     model = Video
@@ -20,13 +23,15 @@ class VideoUpdateView(UpdateView):
     model = Video
     template_name = 'video/video_upload_form.html'
     fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade' ]
-    success_url = reverse_lazy('video:upload_Video')
+    
+    def get_success_url(self):
+        return reverse('video:video_detail', kwargs={'pk':self.object.video_id})
 
 
 class VideoDeleteView(DeleteView):
     model = Video
     template_name = 'video/video_delete_confirm.html'
-    success_url = reverse_lazy('video:upload_Video')
+    success_url = reverse_lazy('video:upload_Video') # Index 페이지로 바꿔야 함. 
 
 
 # 상단 메뉴바에서 영화나 드라마로 분류된 페이지
@@ -40,7 +45,7 @@ class VideoTypeView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['type'] = self.kwargs.get('video_type')      
+        context['type'] = self.kwargs.get('video_type')   
         return context
 
 
@@ -57,10 +62,14 @@ class VideoLV(ListView):
 
 #     return render(request, 'video/index.html',context)
 
-class VideoDV(DetailView):
+class VideoDV(DetailView, LoginRequiredMixin, FormMixin):
     model = Video
     context_object_name = 'video'
     template_name = 'video/video_detail.html'
+    form_class = ReviewForm
+
+    def get_success_url(self):
+        return reverse('video:video_detail', kwargs={'pk':self.object.pk})
    
     # Detail View에서는 paginate_by없기 때문에 만들어줘야 한다
     def get_context_data(self, **kwargs):
@@ -74,10 +83,25 @@ class VideoDV(DetailView):
 
         context['paginator'] = paginator
         context['page_obj'] = page_obj #페이지 목록
+
+        context['form'] = ReviewForm(initial={'re_title':'','text': '',})   
+        context['user_id'] = self.request.user 
+        context['reviews'] = self.object.review_set.all() 
+
         return context
-
-
-       
-        
     
-        
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.video_id = get_object_or_404(Video, pk=self.object.pk)
+        comment.user_id = self.request.user
+        comment.save() 
+        return super(VideoDV, self).form_valid(form)
