@@ -23,8 +23,7 @@
             <li class="nav-item dropdown mx-1 btn btn-dark ">
                 {% if user.is_active %}
                 <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
-                    <i class="fas fa-user"></i>
-                    {{user.username }} </a>
+                    <i class="fas fa-user"></i> {{ user.name }} </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Mypage</a>
                     <a class="dropdown-item" href="#">Logout</a>
@@ -36,7 +35,7 @@
                     <a class="dropdown-item" href="#">Login</a>
                     <a class="dropdown-item" href="#">Register</a>
                 </div>
-                    {% endif %}
+                {% endif %}
             </li>
         </div>
     </div>
