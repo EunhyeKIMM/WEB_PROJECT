@@ -41,14 +41,15 @@ INSTALLED_APPS = [
     # 외부 라이브러리
     # 'taggit.apps.TaggitAppConfig',    # 태그
     # 'taggit_templatetags2',           # 태그
+    'widget_tweaks',
     'tinymce',
     'widget_tweaks',
     # 'pillow',
 
     # 직접 만든 앱
     'video.apps.VideoConfig',
-    'user.apps.UserConfig',
     'review.apps.ReviewConfig',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_URL = '/medaa/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = '/' # 로그인 성공시 리다이렉트할 URL
+# AUTH_USER_MODEL = 'user.User'

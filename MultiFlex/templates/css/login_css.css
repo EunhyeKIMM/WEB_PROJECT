@@ -1,0 +1,124 @@
+body, ul, li, fieldset {
+    margin : 0;
+    padding : 0;
+    list-style: none;
+    background-color: rgb(30, 30, 31);
+}
+body {
+    font-family: "맑은 고딕";
+    font-size: 14px;
+    height: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+a, a code {
+    color: inherit;
+    text-decoration: none;
+}
+fieldset {
+    border: 0;
+    background: 0 0;
+    font-size: 1em;
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+}
+
+/* 헤더부분 */
+#wrap {
+    width: 1200px;
+    margin : 0 auto;
+    position: relative;
+}
+.header .contIn {
+    width: 1200px;
+    margin: 0 auto;
+    background: #beebf4;
+}
+.header .logo {
+    float: left;
+    margin-top:1px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    font-size: 3.5em;
+}
+.header a {
+    cursor: pointer;
+}
+
+/* 컨텐트부분(로그인) */
+#wrap .logInForm .header {
+    clear: left;
+    width: 440px;
+    height: 50%;
+    margin : 0 auto;
+}
+.logInForm .header a {
+    padding-top: 98px;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+#wrap #content {
+    position: relative;
+    width: 440px;
+    margin : 0 auto;
+    padding-bottom: 20px;
+}
+#logInSec {
+    position: relative;
+    width: 440px;
+    margin: 0 auto;
+}
+#logInSec .input0{
+    width: 402px;
+    padding: 12px 0 9px 10px;
+    font-size: 16px;
+    color: #222;
+    font-weight: 700;
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+}
+.idPass .id {
+    position: relative;
+    width: 419px;
+    height: 55px;
+    padding: 6px 0 0 7px;
+    background: url(https://ssl.nx.com/S2/p3/login/2016/set_page.gif) no-repeat 0 0;
+}
+.idPass .id .input0 {
+    text-indent: 2px;
+}
+.idPass .pass {
+    position: relative;
+    width: 419px;
+    height: 55px;
+    padding: 6px 0 0 7px;
+    margin-top: 1px;
+    background: url(https://ssl.nx.com/S2/p3/login/2016/set_page.gif) no-repeat 0 0;
+}
+.idPass .btLogIn button {
+    width: 426px;
+    height: 58px;
+    color: #fff;
+    font-size: 18px;
+    border: 1px solid #6f6f6f;
+    background-color: #6f6f6f;
+}
+.idPass .findMember {
+    padding : 8px 10px 0 10px;
+}
+.idPass .findMember a {
+    float: right;
+}
+.idPass .findMember .joinMember a {
+    margin-right: 15px;
+}
