@@ -27,6 +27,7 @@ urlpatterns = [
     path('review/', include('review.urls')),
     path('video/', include('video.urls')),
     path('', home),
+    
     # 로그인, 로그아웃, 비밀번호 변경 담당
     # path('accounts/', include('django.contrib.auth.urls')),
 

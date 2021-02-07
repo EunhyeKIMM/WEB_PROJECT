@@ -77,6 +77,22 @@ class VideoDV(DetailView):
         return context
 
 
+
+class TagCloudTV(TemplateView):
+    template_name = 'taggit/taggit_cloud.html'
+
+class TaggedObjectLV(ListView):
+    template_name = 'taggit/taggit_video_list.html'
+    model = Video
+
+    def get_queryset(self):
+        return Video.objects.filter(genre__name=self.kwargs.get('tag'))
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tagname'] = self.kwargs['tag']
+        return context
+
        
         
     

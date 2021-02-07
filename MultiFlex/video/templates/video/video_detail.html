@@ -14,7 +14,11 @@
     </div>
     <div>
         <h1>{{video.title}} </h1>
-        <h2>장르 : {{video.genre}} | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | 러닝타임 :
+        <h2>장르 : {% load taggit_templatetags2_tags %}{%get_tags_for_object object as "genre" %}{% for tag in genre %}
+            <a href="{% url 'video:tagged_object_list' tag.name %}">{{tag.name}}</a>
+            {%endfor%}
+            &emsp; <a href="{% url 'video:tag_cloud' %}"><span class="btn btn-into btn-sm">TagCloud</span></a> 
+            | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | 러닝타임 :
             {{video.running_time}}분
         </h2>
         <h3>{{video.description}}</h3>
