@@ -12,6 +12,8 @@ from django.core.paginator import Paginator
 from review.models import *
 from video.form import ReviewForm
 from user.models import * 
+from .form import *
+from django.db.models import Q
 
 class VideoUploadView(CreateView):
     model = Video
@@ -106,3 +108,23 @@ class VideoDV(DetailView, FormMixin):
         comment.user_id = self.request.user
         comment.save() 
         return super(VideoDV, self).form_valid(form)
+
+class SearchView(FormView):
+    model = Video 
+    template_name = 'video/search.html'
+    form_class = PostSearchForm
+
+    def form_valid(self, form):
+        searchWord = form.cleaned_data['search_word']
+        video_list = Video.objects.filter(
+            Q(title__icontains=searchWord) |
+            Q(director__icontains=searchWord)
+        ).distinct()
+        
+        context = {}
+        context['form'] = form
+        context['search_term'] = searchWord
+        context['object_list'] = video_list
+
+        return render(self.request, self.template_name, context)
+    

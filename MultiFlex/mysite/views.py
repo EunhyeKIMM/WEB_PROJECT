@@ -28,9 +28,6 @@ class Homeview(TemplateView):
             self.request.session['theme']=theme
         return super().get_context_data(**kwargs)
 
-class SearchFormView(FormView):
-    pass
-
 
 class MainHomeView(ListView):
     model = Video 
