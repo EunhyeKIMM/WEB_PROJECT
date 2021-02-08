@@ -20,8 +20,10 @@ def register(request):  # 회원가입 함수
         
         if not (email and password and re_password and age and gender and phone and username) :
             res_data['error'] = "모든 값을 입력해야 합니다."
+            return render(request, 'register.html', res_data)
         if password != re_password:
             res_data['error'] = '비밀번호가 다릅니다.'
+            return render(request, 'register.html', res_data)
         else :
             user = User(
                 email = email, 
@@ -32,7 +34,7 @@ def register(request):  # 회원가입 함수
                 username = username
             )
             user.save()
-        return render(request, 'register.html', res_data)   # register를 요청받으면 register.html로 응답
+            return render(request, 'register.html', res_data)   # register를 요청받으면 register.html로 응답
 
 
 # def login(request):
