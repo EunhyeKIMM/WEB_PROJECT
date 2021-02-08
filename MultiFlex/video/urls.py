@@ -1,6 +1,7 @@
 from django.urls import path
 from video.views import *
 
+
 app_name = 'video'
 
 urlpatterns = [
