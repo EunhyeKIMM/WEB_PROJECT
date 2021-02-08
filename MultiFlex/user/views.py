@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password, check_password # 비밀번호 암호화 / 패스워드 체크
 from .models import User
+from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView
 # Create your views here.
 
 def register(request):  # 회원가입 함수
@@ -20,8 +22,10 @@ def register(request):  # 회원가입 함수
         
         if not (email and password and re_password and age and gender and phone and username) :
             res_data['error'] = "모든 값을 입력해야 합니다."
+            return render(request, 'register.html', res_data)
         if password != re_password:
             res_data['error'] = '비밀번호가 다릅니다.'
+            return render(request, 'register.html', res_data)
         else :
             user = User(
                 email = email, 
@@ -32,7 +36,68 @@ def register(request):  # 회원가입 함수
                 username = username
             )
             user.save()
-        return render(request, 'register.html', res_data)   # register를 요청받으면 register.html로 응답
+            return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
+
+@login_required # 로그인 된 상태에서만 사용 가능
+def userpage(request):
+    connect_user = request.user
+
+    context = {
+        'username' : connect_user.username,
+        'email' : connect_user.email,
+        'username' : connect_user.username,
+        'phone' : connect_user.phone,
+        'gender' : connect_user.gender,
+        'age' : connect_user.age
+    }
+    return render(request, 'mypage.html', context=context)
+
+# def userinfo(request):  # 유저 마이페이지
+#     connect_user = request.user
+
+#     context = {
+#         'email' : connect_user.email,
+#         'username' : connect_user.username,
+#         'phone' : connect_user.phone,
+#         'gender' : connect_user.gender,
+#         'age' : connect_user.age
+#     }
+#     return render(request, 'mypage_info.html', context=context)
+    
+
+# class UserDV(DetailView):
+#     model = User
+#     context_object_name = 'mypage'
+#     template_name = 'user/mypage.html'
+   
+#     # Detail View에서는 paginate_by없기 때문에 만들어줘야 한다
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         video = context['video']
+#         review_list = video.review_set.all()   #.order_by('-create_dt')[:5]
+#         paginator = Paginator(review_list, 2) #한 페이지에 보여줄 개수 
+        
+#         page_number = self.request.GET.get('page') # 현재 페이지 받아옴
+#         page_obj = paginator.get_page(page_number) # 현재 페이지에 있는 목록 
+
+#         context['paginator'] = paginator
+#         context['page_obj'] = page_obj #페이지 목록
+#         return context
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def login(request):

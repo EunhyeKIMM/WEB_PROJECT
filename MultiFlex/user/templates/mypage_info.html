@@ -1,0 +1,26 @@
+{%extends "base.html"%}
+{%load widget_tweaks%}
+
+{%block title%}mypage.html{%endblock%}
+
+{% block extra-style %}
+
+{% endblock %}
+
+{%block content%}
+    <h1>{{user.username}}의 My page</h1>
+    <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input type="radio" name="options" id="option1" autocomplete="off" onclick="location.href='#'" checked> 계정
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option2" autocomplete="off" onclick="location.href='#'"> 나의 컨텐츠
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option3" autocomplete="off" onclick="location.href='#'"> 내가 쓴 리뷰
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option3" autocomplete="off" onclick="location.href='#'"> 관심 태그
+        </label>
+    </div>
+{%endblock%}

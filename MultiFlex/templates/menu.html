@@ -24,15 +24,15 @@
                 <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
                     <i class="fas fa-user"></i> {{ user.username }} </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Mypage</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="{% url 'mypage' %}">Mypage</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 </div>
                 {% else %}
                 <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
                     <i class="fas fa-user"></i>Anonymous</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Login</a>
-                    <a class="dropdown-item" href="#">Register</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
                 </div>
                 {% endif %}
             </li>
