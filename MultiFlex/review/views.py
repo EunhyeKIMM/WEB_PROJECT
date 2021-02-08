@@ -4,10 +4,7 @@ from django.views.generic import (ListView, DetailView, TemplateView,
 from django.contrib.auth.mixins import LoginRequiredMixin
 from review.models import *
 from django.urls import reverse_lazy
-from mysite.views import OwnerOnlyMixin 
-
-
-
+from mysite.views import OwnerOnlyMixin
 
 
 class ReviewCreateView(LoginRequiredMixin, CreateView):

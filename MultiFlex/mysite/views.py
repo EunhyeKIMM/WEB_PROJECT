@@ -27,4 +27,9 @@ class Homeview(TemplateView):
         return super().get_context_data(**kwargs)
 
 class SearchFormView(FormView):
+<<<<<<< HEAD
     pass
+=======
+    pass
+
+>>>>>>> master
