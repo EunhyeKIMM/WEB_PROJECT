@@ -11,6 +11,7 @@ from mysite.views import OwnerOnlyMixin
 from django.core.paginator import Paginator
 from review.models import *
 from video.form import ReviewForm
+from user.models import * 
 
 class VideoUploadView(CreateView):
     model = Video
@@ -62,7 +63,7 @@ class VideoLV(ListView):
 
 #     return render(request, 'video/index.html',context)
 
-class VideoDV(DetailView, LoginRequiredMixin, FormMixin):
+class VideoDV(DetailView, FormMixin):
     model = Video
     context_object_name = 'video'
     template_name = 'video/video_detail.html'
@@ -75,7 +76,7 @@ class VideoDV(DetailView, LoginRequiredMixin, FormMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         video = context['video']
-        review_list = video.review_set.all()   #.order_by('-create_dt')[:5]
+        review_list = video.review_set.all().order_by('-create_dt')   #.order_by('-create_dt')[:5]
         paginator = Paginator(review_list, 2) #한 페이지에 보여줄 개수 
         
         page_number = self.request.GET.get('page') # 현재 페이지 받아옴
@@ -102,6 +103,9 @@ class VideoDV(DetailView, LoginRequiredMixin, FormMixin):
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.video_id = get_object_or_404(Video, pk=self.object.pk)
-        comment.user_id = self.request.user
+        uuser = User.objects.all()
+        for iid in uuser:
+            if iid.id == self.request.user.id:
+                comment.user_id = iid
         comment.save() 
         return super(VideoDV, self).form_valid(form)

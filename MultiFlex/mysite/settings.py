@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     # 'taggit_templatetags2',           # 태그
     'widget_tweaks',
     'tinymce',
-    'widget_tweaks',
     # 'pillow',
 
     # 직접 만든 앱
