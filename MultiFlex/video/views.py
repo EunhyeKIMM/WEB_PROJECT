@@ -103,9 +103,6 @@ class VideoDV(DetailView, FormMixin):
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.video_id = get_object_or_404(Video, pk=self.object.pk)
-        uuser = User.objects.all()
-        for iid in uuser:
-            if iid.id == self.request.user.id:
-                comment.user_id = iid
+        comment.user_id = self.request.user
         comment.save() 
         return super(VideoDV, self).form_valid(form)
