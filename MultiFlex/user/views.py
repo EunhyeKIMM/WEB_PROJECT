@@ -85,21 +85,6 @@ def userpage(request):
 #         return context
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # def login(request):
 #     response_data = {}
 #     print('------------------', request.method)

@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}video_type.html{% endblock %}
+{% block title %}main_home.html{% endblock %}
 
 {% block extra-style %}
     <style>       
@@ -58,28 +58,26 @@
 {% endblock %}
 
 {% block content %}
-
-    <center>
-        <br>
-        <h1><strong>{{ type|upper }}</strong></h1>
-        <br>
-        <br>
-        
-        <div class="grid-container">
-            {% for video in video_list %}
-                <div class="grid-item">
-                    <button type="button" class="btn btn-light" style="padding: 0%;">
-                        <div class="card" style="width:400px">
-                            <a href="{{video.get_absolute_url}}">
-                                <img class="card-img-top" src ="{{ video.video_thumb }}">
-                            </a> 
-                        </div>
-                    </button>
-                </div>
-            {% endfor %}
+<center>
+    <div class="container-fluid" style="margin: 0%; background-color: cornflowerblue;">
+        <div class="container">
+            <h1>멀티플렉스 메인 화면입니다. </h1>
         </div>
-    </center>
-    
+    </div>
 
-        
+    <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">Top 10</div> 
+    <div class="grid-container">
+        {% for value in top_10 %}      
+            <div class="grid-item">
+                <button type="button" class="btn btn-light" style="padding: 0%;">
+                    <div class="card" style="width:400px">
+                        <a href="{{value.get_absolute_url}}">
+                                <img class="card-img-top" src ="{{ value.video_thumb }}">
+                        </a> 
+                    </div>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+</center>
 {% endblock %}
