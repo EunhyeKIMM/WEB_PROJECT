@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}main_home.html{% endblock %}
+
+{% block extra-style %}
+    <style>       
+        .grid-container {
+            position: relative;
+            display: inline-grid;
+            grid-template-columns: auto auto auto auto;
+            grid-row-gap: 60px;
+            background-color: rgb(50, 50, 55);
+            padding: 10px;
+            offset-block-end: 10px;
+            margin: 0%;
+            }
+        .grid-item {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 0px solid rgba(0, 0, 0, 0.8);
+            padding: 0;
+            font-size: 30px;
+            text-align: center;
+            }
+        @media(max-width: 1600px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                grid-row-gap: 60px;
+                background-color: rgb(50, 50, 55);
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+        }
+        @media(max-width: 1200px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto auto;
+                grid-row-gap: 60px;
+                background-color: rgb(50, 50, 55);
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+        }    
+        @media(max-width: 800px) {
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto;
+                grid-row-gap: 60px;
+                background-color: rgb(50, 50, 55);
+                padding: 10px;
+                offset-block-end: 10px;
+                margin: 0%;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<center>
+    <div class="container-fluid" style="margin: 0%; background-color: cornflowerblue;">
+        <div class="container">
+            <h1>멀티플렉스 메인 화면입니다. </h1>
+        </div>
+    </div>
+
+    <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">Top 10</div> 
+    <div class="grid-container">
+        {% for value in top_10 %}      
+            <div class="grid-item">
+                <button type="button" class="btn btn-light" style="padding: 0%;">
+                    <div class="card" style="width:400px">
+                        <a href="{{value.get_absolute_url}}">
+                                <img class="card-img-top" src ="{{ value.video_thumb }}">
+                        </a> 
+                    </div>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+</center>
+{% endblock %}

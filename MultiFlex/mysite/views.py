@@ -1,10 +1,12 @@
-from django.views.generic import TemplateView, FormView, CreateView, View
+from user.views import register
+from video.models import Video
+from django.views.generic import TemplateView, FormView, ListView
 from django.urls import reverse_lazy
 from django.shortcuts import render # 기본 반환값(템플릿 지정하는 함수)
 from django.http import HttpResponse, HttpResponseRedirect  # 직접 응답을 만들어서 전달할 때, 이미 만들어진 페이지로 이동
 from user.models import User
-from django.views.generic import TemplateView, FormView
 from django.contrib.auth.mixins import AccessMixin
+
 
 class OwnerOnlyMixin(AccessMixin):
     raise_exception = True
@@ -28,3 +30,13 @@ class Homeview(TemplateView):
 
 class SearchFormView(FormView):
     pass
+
+
+class MainHomeView(ListView):
+    model = Video 
+    template_name = 'main_home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['top_10'] = Video.objects.all().order_by('recommend')[:10]
+        return context
