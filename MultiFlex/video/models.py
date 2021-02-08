@@ -30,7 +30,6 @@ class Video(models.Model):
     video_link = models.URLField(verbose_name="VIDEO_URL", max_length=350)
     video_thumb = models.URLField(verbose_name="THUMBNAIL_URL", max_length=350)
 
-
     class Meta:
         verbose_name = 'video'
         verbose_name_plural = 'videos'

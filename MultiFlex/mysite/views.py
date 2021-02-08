@@ -28,3 +28,4 @@ class Homeview(TemplateView):
 
 class SearchFormView(FormView):
     pass
+
