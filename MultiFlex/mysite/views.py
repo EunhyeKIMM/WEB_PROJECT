@@ -22,14 +22,7 @@ class Homeview(TemplateView):
 
     def get_context_data(self, **kwargs):
         theme = self.request.GET.get('theme')
+        
         if theme : 
             self.request.session['theme']=theme
         return super().get_context_data(**kwargs)
-
-class SearchFormView(FormView):
-<<<<<<< HEAD
-    pass
-=======
-    pass
-
->>>>>>> master
