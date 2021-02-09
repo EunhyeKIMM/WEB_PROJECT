@@ -34,11 +34,7 @@ def register(request):  # 회원가입 함수
                 username = username
             )
             user.save()
-<<<<<<< HEAD
             return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
-=======
-            return render(request, 'register.html', res_data)   # register를 요청받으면 register.html로 응답
->>>>>>> master
 
 
 # def login(request):

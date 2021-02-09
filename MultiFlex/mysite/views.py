@@ -27,9 +27,6 @@ class Homeview(TemplateView):
         
         if theme : 
             self.request.session['theme']=theme
-<<<<<<< HEAD
-        return super().get_context_data(**kwargs)
-=======
         return super().get_context_data(**kwargs)
 
 class SearchFormView(FormView):
@@ -44,4 +41,3 @@ class MainHomeView(ListView):
         context = super().get_context_data(**kwargs)
         context['top_10'] = Video.objects.all().order_by('recommend')[:10]
         return context
->>>>>>> master
