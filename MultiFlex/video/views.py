@@ -89,7 +89,28 @@ class VideoDV(DetailView, FormMixin):
         context['user_id'] = self.request.user 
         context['reviews'] = self.object.review_set.all() 
 
+<<<<<<< HEAD
+
+class TagCloudTV(TemplateView):
+    template_name = 'taggit/taggit_cloud.html'
+
+class TaggedObjectLV(ListView):
+    template_name = 'taggit/taggit_video_list.html'
+    model = Video
+
+    def get_queryset(self):
+        return Video.objects.filter(genre__name=self.kwargs.get('tag'))
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tagname'] = self.kwargs['tag']
         return context
+
+       
+        
+=======
+        return context
+>>>>>>> master
     
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

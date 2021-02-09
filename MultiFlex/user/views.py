@@ -36,6 +36,7 @@ def register(request):  # 회원가입 함수
                 username = username
             )
             user.save()
+<<<<<<< HEAD
             return redirect('register_done.html')
             # return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
             
@@ -86,6 +87,9 @@ def userpage(request):
 #         context['page_obj'] = page_obj #페이지 목록
 #         return context
 
+=======
+            return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
+>>>>>>> master
 
 
 # def login(request):

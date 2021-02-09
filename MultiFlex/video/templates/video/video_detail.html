@@ -2,26 +2,72 @@
 {% load widget_tweaks %} 
 
 {% block title %}video_tail.html{% endblock %}
+{% block extra-style %}
+    <style>       
+        .video1{
+            position : fixed;
+            top : 100px;
+        }
+        #guard{
+            height : 20px;
+
+
+            
+        }
+        .layer1{
+            position : relative;
+        
+        }
+
+        #absolute{
+            position: absolute;
+            top:0px;
+            left:1000px;
+        }
+
+    </style>
+    
+{% endblock %}
+
 
 {% block content %}
+<<<<<<< HEAD
+<div class="video1">
+    <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+        <div>
+            <h1>{{video.title}} </h1>
+            <h2>장르 : {% load taggit_templatetags2_tags %}{%get_tags_for_object object as "genre" %}{% for tag in genre %}
+                <a href="{% url 'video:tagged_object_list' tag.name %}">{{tag.name}}</a>
+                {%endfor%}
+                &emsp; <a href="{% url 'video:tag_cloud' %}"><span class="btn btn-into btn-sm">Genre</span></a> 
+                | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | 러닝타임 :
+                {{video.running_time}}분
+            </h2>
+            <h3>{{video.description}}</h3>
+        </div>
+    
+</div>
+<div id = "guard">
+
+</div>
+<div class='layer1'>
+    
+=======
 <div class='container full-width'>
     <div>
         <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
     </div>
+>>>>>>> master
     <div class="form-row float-right">
         <button type="button" class="btn btn-outline-danger">추천</button>
         <button type="button" class="btn btn-outline-danger">찜하기</button>
     </div>
-    <div>
-        <h1>{{video.title}} </h1>
-        <h2>장르 : {{video.genre}} | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | 러닝타임 :
-            {{video.running_time}}분
-        </h2>
-        <h3>{{video.description}}</h3>
-    </div>
-
+    
+    <div id='absolute'>
     {% for review in page_obj %}
     <h1>
         <li><a href='#'>{{review.re_title}} </a></li>
@@ -47,6 +93,7 @@
             <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
             {% endif %}
         </span>
+    </div>
     </div>
 
     <br><br>
@@ -82,6 +129,9 @@
         </form> 
     </div>
 </div>
+<<<<<<< HEAD
+{% endblock %}
+=======
 <br><br><br><br><br>
 {% endblock %}
 
@@ -91,3 +141,4 @@
         tinymce.init({ selector:'textarea', menubar: false, statusbar: false, toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat' }); 
     </script>
 {% endblock %}
+>>>>>>> master
