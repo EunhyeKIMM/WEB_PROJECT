@@ -1,12 +1,44 @@
 {% extends "base.html" %}
+
 {% block title %}logged_out.html{% endblock %}
+
 {% block content %}
-    <h1>Logged out</h1>
+
+
+<br><br><br><br><br><br>
+<div style="text-align:center">
+  <img src="https://fontmeme.com/permalink/210205/416c32f381d18aa5c990b57c86446f6b.png" alt="netflix-type"
+      border="0">
+  </div>
+  
+  <form class="wrapper" action='.' method="post">
+    {% csrf_token %}
+    <div class="form-done">
     <br>
-    <div>
-        <i class="fas fa-quote-left"></i>
-        <span class="h6">&ensp;Thanks for spending your quality time with this website today.&ensp;</span>
-        <i class="fas fa-quote-right"></i>
+    <div style="text-align: center;">
+    <h2>정상적으로 로그아웃 되었습니다.</h2>
     </div>
-    <p class="font-italic"><a href="{% url 'login' %}">Log in again</a></p>
+    <br>
+    <div style="text-align: center; font-weight: bold;">
+    <h4>
+    MULTIFLEX와 함께 즐거운 시간 되셨기 바랍니다.
+    </h4>
+    </div>
+    
+    
+
+    </div>
+    </form>
+
+    <hr width="80%" color="#D3D3D3" size="1">
+    <div style="text-align: center;">
+    <a class="btn btn-success" href='/'>메인으로 이동하기</a></button>
+
+    <a class="btn btn-danger" href='/accounts/login'>로그인하기</a></div>
+
+
+
+
+
+
 {% endblock %}

@@ -16,19 +16,17 @@ Including another URLconf
 from os import name
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import Homeview, MainHomeView
+from mysite.views import  MainHomeView
 
 
 
 urlpatterns = [
-    path('', Homeview.as_view(), name='home'),
+    path('', MainHomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('user/', include('user.urls')),
     path('review/', include('review.urls')),
     path('video/', include('video.urls')),
-  
-    path('mainhome/', MainHomeView.as_view(), name='realmainhome'),
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]

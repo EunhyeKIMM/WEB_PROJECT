@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password, check_password # 비밀번호 암호화 / 패스워드 체크
 from .models import User
+from django.urls import reverse
 # Create your views here.
 
 def register(request):  # 회원가입 함수
@@ -34,8 +36,8 @@ def register(request):  # 회원가입 함수
                 username = username
             )
             user.save()
-            return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
-
+            # return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
+            return HttpResponseRedirect(reverse('register_done'))
 
 # def login(request):
 #     response_data = {}
