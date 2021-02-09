@@ -41,3 +41,6 @@ class MainHomeView(ListView):
         if theme : 
             self.request.session['theme']=theme
         return super().get_context_data(**kwargs)
+
+class UserCreateDoneTV(TemplateView):
+    template_name = 'register_done.html'
