@@ -1,11 +1,6 @@
 from django.urls import path
 from user import views
 
-<<<<<<< HEAD
-
-=======
-# app_name = 'user' 
->>>>>>> master
 
 urlpatterns = [
     path('register/', views.register, name='register'),

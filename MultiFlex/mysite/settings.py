@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'taggit.apps.TaggitAppConfig',    # 태그
     'taggit_templatetags2',           # 태그
     'widget_tweaks',
