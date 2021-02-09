@@ -7,6 +7,8 @@ app_name = 'video'
 urlpatterns = [
     path('uploadVideo/', VideoUploadView.as_view(), name="upload_Video"), 
 
+    path('<int:pk>/', VideoDV.as_view(), name='video_detail'),
+
     path('<int:pk>/updateVideo/', VideoUpdateView.as_view(), name="update_Video"), 
 
     path('<int:pk>/deleteVideo/', VideoDeleteView.as_view(), name="delete_Video"),
@@ -20,4 +22,10 @@ urlpatterns = [
     path('searchVideo/', SearchView.as_view(), name='search_video'),
 
     path('like/', like, name='video_like'),
+
+    path('tag/', TagCloudTV.as_view(), name='tag_cloud'),
+
+    path('tag/<str:tag>/', TaggedObjectLV.as_view(), name='tagged_object_list'),
+    
+    
 ]

@@ -4,14 +4,41 @@
 
 {% block content %}
 
-    <h1>가입 성공~!</h1>
 
+<br><br><br><br><br><br>
+<div style="text-align:center">
+  <img src="https://fontmeme.com/permalink/210205/416c32f381d18aa5c990b57c86446f6b.png" alt="netflix-type"
+      border="0">
+  </div>
+  
+  <form class="wrapper" action='.' method="post">
+    {% csrf_token %}
+    <div class="form-done">
     <br>
-
-    <p>MultiFlex의 가족이 되신걸 환영합니다~~</p>
-    <div class="form-group">
-        <div class="offset-sm-3 col-sm-5">
-            <a href="{% url 'login' %}">로그인하러 가기</a>
-        </div>
+    <div style="text-align: center;">
+    <h2>회원가입이 완료되었습니다.</h2>
     </div>
+    <br>
+    <div style="text-align: center; font-weight: bold;">
+    <h3>
+    MULTIFLEX의 가족이 되신 것을 진심으로 환영합니다.
+    </h3>
+    </div>
+    
+    
+
+    </div>
+    </form>
+
+    <hr width="80%" color="#D3D3D3" size="1">
+    <div style="text-align: center;">
+    <a class="btn btn-success" href='/'>메인으로 이동하기</a></button>
+
+    <a class="btn btn-danger" href='/accounts/login'>로그인하기</a></div>
+
+
+
+
+
+
 {% endblock %}

@@ -16,7 +16,7 @@ Including another URLconf
 from os import name
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import Homeview, MainHomeView
+from mysite.views import  MainHomeView
 
 
 

@@ -16,32 +16,32 @@
              csrf_token 폼의 경우에는 , 데이터를 서버에 전달하는 기능.이때 암호화된 키를 숨겨놓아 크로스도메인을 막기 위함. -->
 <!-- bootstrap -component - forms -->
 
-<div class="row mt-5">
+<div class="row mt-5" id="bg">
     {{error}}
-    <div class="col-12 ">
-        <div class="row mt-5">
-            <div class="col-12 ">
-                <form method="POST" action="." class="card pt-3">
+    <div class="col-12 " id="bg2">
+        <div class="row mt-5" id="bg3">
+            <div class="col-12 " id="bg4">
+                <form method="POST" action="." class="card pt-3" id="bg5">
                     {% csrf_token %}
-                    <div class="form-group">
+                    <div class="form-group" id="email">
                         <label for="email">이메일</label>
                         <input type="email" class="form-control" id="email" placeholder="이메일" name="email">
                         <!-- 이 email 값으로 정보가 전달된다 -->
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="password">
                         <label for="password">비밀번호</label>
                         <input type="password" class="form-control" id="password" placeholder="비밀번호" name="password">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="password2">
                         <label for="re_password">비밀번호 확인</label>
                         <input type="password" class="form-control" id="re_password" placeholder="비밀번호 확인"
                             name="re_password">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="hi2">
                         <label for="age">나이</label>
                         <input type="number" class="form-control" id="age" placeholder="나이" name="age">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="gender">
                         <label for="gender">성별
                             <input type="radio" id="male" placeholder="성별" name="gender">
                             <label for="male">남자</label>
@@ -49,11 +49,11 @@
                             <label for="female">여자</label>
                         </label>    
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="call">
                         <label for="phone">연락처</label>
                         <input type="tel" class="form-control" id="phone" placeholder="연락처" name="phone">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="hi">
                         <label for="username">이름</label>
                         <input type="name" class="form-control" id="username" placeholder="이름" name="username">
                     </div>

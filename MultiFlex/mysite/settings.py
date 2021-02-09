@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 외부 라이브러리
-    # 'taggit.apps.TaggitAppConfig',    # 태그
-    # 'taggit_templatetags2',           # 태그
+    
+    'taggit.apps.TaggitAppConfig',    # 태그
+    'taggit_templatetags2',           # 태그
     'widget_tweaks',
     'tinymce',
     # 'pillow',
