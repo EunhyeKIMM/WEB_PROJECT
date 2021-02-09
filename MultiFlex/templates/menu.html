@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">
-        <a href="#"><img src="https://fontmeme.com/permalink/210205/8ecac24b2447b0018a4bc2430c375bae.png" alt="netflix-type" border="0"></a></span>
+        <a href="/"><img src="https://fontmeme.com/permalink/210205/8ecac24b2447b0018a4bc2430c375bae.png" alt="netflix-type" border="0"></a></span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,8 +31,8 @@
                 <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
                     <i class="fas fa-user"></i>Anonymous</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Login</a>
-                    <a class="dropdown-item" href="#">Register</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
                 </div>
                 {% endif %}
             </li>
