@@ -1,5 +1,6 @@
+import django
 from django.db.models import fields
-from django.http import response
+from django.http import response, HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import (ListView, DetailView, TemplateView,
                                 FormView, CreateView, UpdateView, DeleteView)
@@ -14,6 +15,9 @@ from video.form import ReviewForm
 from user.models import * 
 from .form import *
 from django.db.models import Q
+import json 
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 class VideoUploadView(CreateView):
     model = Video
@@ -109,12 +113,23 @@ class VideoDV(DetailView, FormMixin):
         comment.save() 
         return super(VideoDV, self).form_valid(form)
 
-    def like(self):
-        video = get_object_or_404(Video, pk=self.object.pk)
-        if self.request.user in video.recommend.all():
-            video.recommend.remove(self.request.user)
-        else:
-            video.recommend.add(self.request.user)
+# 좋아요 기능 함수 
+@login_required
+@require_POST
+def like(request):
+    pk = request.POST.get('pk', None)
+    video = get_object_or_404(Video, pk=pk)
+    user = request.user
+
+    if video.recommend.filter(id=user.id).exists():
+        video.recommend.remove(user)
+    else: 
+        video.recommend.add(user)
+    context = {'like_count': video.count_like_user()}
+ 
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
 
 class SearchView(FormView):
     model = Video 

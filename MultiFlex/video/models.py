@@ -43,9 +43,5 @@ class Video(models.Model):
     def get_absolute_url(self):
         return reverse('video:video_detail', args=(self.video_id,))
 
-    def like(self):
-        video = get_object_or_404(Video, pk=self.object.pk)
-        if self.request.user in video.recommend.all():
-            video.recommend.remove(self.request.user)
-        else:
-            video.recommend.add(self.request.user)
+    def count_like_user(self):
+        return self.recommend.count()

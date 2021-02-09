@@ -18,4 +18,6 @@ urlpatterns = [
     path('<int:pk>/', VideoDV.as_view(), name='video_detail'),
 
     path('searchVideo/', SearchView.as_view(), name='search_video'),
+
+    path('like/', like, name='video_like'),
 ]
