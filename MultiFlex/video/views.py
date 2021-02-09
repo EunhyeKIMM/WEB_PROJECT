@@ -109,6 +109,13 @@ class VideoDV(DetailView, FormMixin):
         comment.save() 
         return super(VideoDV, self).form_valid(form)
 
+    def like(self):
+        video = get_object_or_404(Video, pk=self.object.pk)
+        if self.request.user in video.recommend.all():
+            video.recommend.remove(self.request.user)
+        else:
+            video.recommend.add(self.request.user)
+
 class SearchView(FormView):
     model = Video 
     template_name = 'video/search.html'

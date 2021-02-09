@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from user.models import *
+from django.shortcuts import get_object_or_404
 
 
 
@@ -25,7 +27,7 @@ class Video(models.Model):
     running_time = models.PositiveIntegerField(verbose_name="재생시간")
     director = models.CharField(verbose_name="감독이름", max_length=30)
     video_type = models.CharField(verbose_name="구분", max_length=30, choices=VIDEO_TYPE)
-    recommend = models.PositiveIntegerField(verbose_name="추천수", default=0)
+    recommend = models.ManyToManyField(User, blank=True, related_name='like')
     grade = models.CharField(verbose_name="영화등급", max_length=30, choices=GRADE)
     video_link = models.URLField(verbose_name="VIDEO_URL", max_length=350)
     video_thumb = models.URLField(verbose_name="THUMBNAIL_URL", max_length=350)
@@ -40,3 +42,10 @@ class Video(models.Model):
 
     def get_absolute_url(self):
         return reverse('video:video_detail', args=(self.video_id,))
+
+    def like(self):
+        video = get_object_or_404(Video, pk=self.object.pk)
+        if self.request.user in video.recommend.all():
+            video.recommend.remove(self.request.user)
+        else:
+            video.recommend.add(self.request.user)
