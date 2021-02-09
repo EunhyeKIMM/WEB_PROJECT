@@ -1,5 +1,6 @@
 from django.urls import path
 from user import views
+# from mysite.views import UserCreateDoneTV
 
 # app_name = 'user' 
 
@@ -9,4 +10,5 @@ urlpatterns = [
     # path('logout/', views.logout, name='logout'),
     path('', views.userpage, name='mypage'),
     # path('mypage_info/', views.userinfo, name='mypage_info'),
+    # path('register/register_done/', UserCreateDoneTV.as_view(), name='register_done'),
 ]

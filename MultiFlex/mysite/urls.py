@@ -16,7 +16,7 @@ Including another URLconf
 from os import name
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import Homeview, MainHomeView
+from mysite.views import Homeview, MainHomeView, UserCreateDoneTV
 
 
 
@@ -30,5 +30,6 @@ urlpatterns = [
   
     path('mainhome/', MainHomeView.as_view(), name='realmainhome'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('register/register_done/', UserCreateDoneTV.as_view(), name='register_done'),
 
 ]

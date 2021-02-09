@@ -36,7 +36,9 @@ def register(request):  # 회원가입 함수
                 username = username
             )
             user.save()
-            return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
+            return redirect('register_done.html')
+            # return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
+            
 
 @login_required # 로그인 된 상태에서만 사용 가능
 def userpage(request):
@@ -83,6 +85,7 @@ def userpage(request):
 #         context['paginator'] = paginator
 #         context['page_obj'] = page_obj #페이지 목록
 #         return context
+
 
 
 # def login(request):

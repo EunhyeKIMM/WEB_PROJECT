@@ -40,3 +40,7 @@ class MainHomeView(ListView):
         context = super().get_context_data(**kwargs)
         context['top_10'] = Video.objects.all().order_by('recommend')[:10]
         return context
+
+
+class UserCreateDoneTV(TemplateView):
+    template_name = 'register_done.html'
