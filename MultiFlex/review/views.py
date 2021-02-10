@@ -3,7 +3,7 @@ from review.models import *
 from django.urls import reverse_lazy
 from mysite.views import OwnerOnlyMixin 
 from video.models import *
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 class ReviewUpdateView(UpdateView, OwnerOnlyMixin):
     model = Review
@@ -22,7 +22,6 @@ class ReviewDeleteView(DeleteView, OwnerOnlyMixin):
     def get_success_url(self):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})
 
-<<<<<<< HEAD
 class ReviewDV(DetailView):
     model = Review
     
@@ -33,7 +32,6 @@ class ReviewDV(DetailView):
             count_view.read_cnt = count_view.read_cnt + 1
             count_view.save()
         return context
-=======
 class ReviewList(ListView):
     model = Review
     template_name = 'review/myreview.html'
@@ -41,4 +39,3 @@ class ReviewList(ListView):
     def get_queryset(self):
         # return Review.objects.all()
         return Review.objects.filter(user_id = self.request.user)
->>>>>>> master

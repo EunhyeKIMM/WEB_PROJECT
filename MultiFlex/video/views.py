@@ -91,9 +91,6 @@ class VideoDV(DetailView, FormMixin, LoginRequiredMixin):
 
         context['form'] = ReviewForm(initial={'re_title':'','text': '',})   
         context['user_id'] = self.request.user 
-<<<<<<< HEAD
-        context['reviews'] = self.object.review_set.all()        
-=======
         context['reviews'] = self.object.review_set.all() 
         dvdv = self.get_object()
         if dvdv.bookmark.filter(id=self.request.user.id).exists():
@@ -176,24 +173,8 @@ class SearchView(FormView):
         context['search_term'] = searchWord
         context['object_list'] = video_list
 
->>>>>>> master
-        return context
+        return render(self.request, self.template_name, context)
     
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()
-
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.video_id = get_object_or_404(Video, pk=self.object.pk)
-        comment.user_id = self.request.user
-        comment.save() 
-        return super(VideoDV, self).form_valid(form)
 
 class TagCloudTV(TemplateView):
     template_name = 'taggit/taggit_cloud.html'
