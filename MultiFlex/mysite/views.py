@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import AccessMixin
 
 class OwnerOnlyMixin(AccessMixin):
     raise_exception = True
-    permission_denied_message = "Owner only can update/delete the object."
+    permission_denied_message = "수정 또는 삭제할 권한이 없습니다."
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object() # 모델 인스턴스 얻기
@@ -20,18 +20,13 @@ class OwnerOnlyMixin(AccessMixin):
         return super().get(request, *args, **kwargs)
 
 
-    
-
-class SearchFormView(FormView):
-    pass
-
-
 class MainHomeView(ListView):
     model = Video 
     template_name = 'main_home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+<<<<<<< HEAD
         context['top_10'] = Video.objects.all().order_by('recommend')[:10]
         
         theme = self.request.GET.get('theme')
@@ -40,5 +35,15 @@ class MainHomeView(ListView):
             self.request.session['theme']=theme
         return context
         
+=======
+        context['top_10'] = Video.objects.all().order_by('-like')[:10]
+    
+        theme = self.request.GET.get('theme')       
+        if theme : 
+            self.request.session['theme']=theme
+        return context
+
+
+>>>>>>> master
 class UserCreateDoneTV(TemplateView):
     template_name = 'register_done.html'

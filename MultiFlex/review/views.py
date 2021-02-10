@@ -1,16 +1,11 @@
-from django.shortcuts import render
-from django.views.generic import (ListView, DetailView, TemplateView,
-                                FormView, CreateView, UpdateView, DeleteView)
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import UpdateView, DeleteView
 from review.models import *
 from django.urls import reverse_lazy
 from mysite.views import OwnerOnlyMixin 
 from video.models import *
+from django.views.generic import ListView
 
-
-# OwneronlyMixin 추가 해야함 !
-
-class ReviewUpdateView(UpdateView):
+class ReviewUpdateView(UpdateView, OwnerOnlyMixin):
     model = Review
     template_name = 'review/review_upload_form.html'
     fields = ['re_title', 'content' ]
@@ -19,7 +14,7 @@ class ReviewUpdateView(UpdateView):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})
 
 
-class ReviewDeleteView(DeleteView):
+class ReviewDeleteView(DeleteView, OwnerOnlyMixin):
     model = Review
     template_name = 'review/review_delete_confirm.html'
     success_url = reverse_lazy('review:add_review')
@@ -27,6 +22,7 @@ class ReviewDeleteView(DeleteView):
     def get_success_url(self):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})
 
+<<<<<<< HEAD
 class ReviewDV(DetailView):
     model = Review
     
@@ -37,3 +33,12 @@ class ReviewDV(DetailView):
             count_view.read_cnt = count_view.read_cnt + 1
             count_view.save()
         return context
+=======
+class ReviewList(ListView):
+    model = Review
+    template_name = 'review/myreview.html'
+
+    def get_queryset(self):
+        # return Review.objects.all()
+        return Review.objects.filter(user_id = self.request.user)
+>>>>>>> master
