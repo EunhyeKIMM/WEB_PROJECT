@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from video.models import *
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -62,7 +63,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True, verbose_name='ID 활성화 여부')
     is_admin = models.BooleanField(default=False, verbose_name='관리자 여부')
     is_staff = models.BooleanField(default=False, verbose_name="직원 여부")
-    bookmark = models.CharField(verbose_name="찜한 영상", max_length=50, null=True, blank=True)
+    
     
     # 모델 매니저
     objects = UserManager()

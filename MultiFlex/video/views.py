@@ -1,6 +1,4 @@
-import django
-from django.db.models import fields
-from django.http import response, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import (ListView, DetailView, TemplateView,
                                 FormView, CreateView, UpdateView, DeleteView)
@@ -94,6 +92,11 @@ class VideoDV(DetailView, FormMixin):
         context['form'] = ReviewForm(initial={'re_title':'','text': '',})   
         context['user_id'] = self.request.user 
         context['reviews'] = self.object.review_set.all() 
+        dvdv = self.get_object()
+        if dvdv.bookmark.filter(id=self.request.user.id).exists():
+            context['how_dib'] = "찜하기 취소"
+        else:
+            context['how_dib'] = "찜하기"
 
         return context
     
@@ -126,6 +129,24 @@ def like(request):
     else: 
         video.recommend.add(user)
     context = {'like_count': video.count_like_user()}
+ 
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+# 찜하기 기능 함수 
+@login_required
+@require_POST
+def dibs(request):
+    pk = request.POST.get('pk', None)
+    video = get_object_or_404(Video, pk=pk)
+    user = request.user
+
+    if video.bookmark.filter(id=user.id).exists():
+        video.bookmark.remove(user)
+        message = " "
+    else: 
+        video.bookmark.add(user)
+        message = " 취소"
+    context = {'message': message}
  
     return HttpResponse(json.dumps(context), content_type="application/json")
 
@@ -167,4 +188,9 @@ class TaggedObjectLV(ListView):
         return context
 
        
-        
+class DibsView(ListView):
+    model = Video
+    template_name = 'video/video_dibs.html'
+
+    def get_queryset(self):
+        return Video.objects.filter(bookmark=self.request.user)

@@ -28,10 +28,11 @@ class Video(models.Model):
     running_time = models.PositiveIntegerField(verbose_name="재생시간")
     director = models.CharField(verbose_name="감독이름", max_length=30)
     video_type = models.CharField(verbose_name="구분", max_length=30, choices=VIDEO_TYPE)
-    recommend = models.ManyToManyField(User, blank=True, related_name='like')
+    recommend = models.ManyToManyField(User, blank=True, related_name='like_user')
     grade = models.CharField(verbose_name="영화등급", max_length=30, choices=GRADE)
     video_link = models.URLField(verbose_name="VIDEO_URL", max_length=350)
     video_thumb = models.URLField(verbose_name="THUMBNAIL_URL", max_length=350)
+    bookmark = models.ManyToManyField(User, blank=True, related_name='dibs_user')
 
     class Meta:
         verbose_name = 'video'

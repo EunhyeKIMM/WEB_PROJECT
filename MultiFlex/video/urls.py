@@ -22,10 +22,12 @@ urlpatterns = [
     path('searchVideo/', SearchView.as_view(), name='search_video'),
 
     path('like/', like, name='video_like'),
+    
+    path('dibs/', dibs, name='video_dibs'),
 
     path('tag/', TagCloudTV.as_view(), name='tag_cloud'),
 
     path('tag/<str:tag>/', TaggedObjectLV.as_view(), name='tagged_object_list'),
     
-    
+    path('mydibs/', DibsView.as_view(), name='dibs_list'),
 ]
