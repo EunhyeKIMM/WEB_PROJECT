@@ -13,6 +13,7 @@ class Review(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="작성자")
     video_id = models.ForeignKey(Video, on_delete=models.CASCADE, verbose_name="영상")
     like = models.PositiveIntegerField(verbose_name="좋아요", default=0)
+    read_cnt = models.IntegerField(default=0)
 
     def __str__(self):
         return self.re_title

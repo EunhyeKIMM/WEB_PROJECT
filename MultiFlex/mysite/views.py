@@ -33,14 +33,12 @@ class MainHomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['top_10'] = Video.objects.all().order_by('recommend')[:10]
-        return context
-
-    def get_context_data(self, **kwargs):
+        
         theme = self.request.GET.get('theme')
         
         if theme : 
             self.request.session['theme']=theme
-        return super().get_context_data(**kwargs)
-
+        return context
+        
 class UserCreateDoneTV(TemplateView):
     template_name = 'register_done.html'

@@ -3,116 +3,161 @@
 
 {% block title %}video_detail.html{% endblock %}
 {% block extra-style %}
-    <style>       
-        .video1{
-            position : fixed;
-            top : 100px;
-        }
-        #guard{
-            height : 20px;
+<style>
+    .box1{
+        float: left;
+    }
 
 
-            
-        }
-        .layer1{
-            position : relative;
-        
-        }
-
-        #absolute{
-            position: absolute;
-            top:0px;
-            left:1000px;
-        }
-
-    </style>
+    .box2{
+        float: right;
+    }
     
+    .box3{
+        clear: both;
+    }
+
+
+</style>
+
+
+
 {% endblock %}
 
 
 {% block content %}
-<div class="video1">
+<div class="video1" style="text-align: center;">
     <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
-        <div>
+</div>
+    <div class="container">
+        <div class="box1">
             <h1>{{video.title}} </h1>
-            <h2>장르 : {% load taggit_templatetags2_tags %}{%get_tags_for_object object as "genre" %}{% for tag in genre %}
-                <a href="{% url 'video:tagged_object_list' tag.name %}">{{tag.name}}</a>
-                {%endfor%}
-                &emsp; <a href="{% url 'video:tag_cloud' %}"><span class="btn btn-into btn-sm">Genre</span></a> 
-                | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | 러닝타임 :
-                {{video.running_time}}분
-            </h2>
-            <h3>{{video.description}}</h3>
         </div>
-    
+            <div class="box2" style="text-align: right;">
+                <button type="button" class="btn btn-outline-danger"><i class="far fa-thumbs-up"></i> 추천</button>
+                <button type="button" class="btn btn-outline-danger"><i class="fas fa-share-square"></i> 찜하기</button>
+            </div>
+            
+        <div class="box3">
+            
+        <h4>장르 : {% load taggit_templatetags2_tags %}{%get_tags_for_object object as "genre" %}{% for tag in genre %}
+            <a href="{% url 'video:tagged_object_list' tag.name %}">{{tag.name}}</a>
+            {%endfor%}
+                
+            | 감독 : {{video.director}} | 개봉일 : {{video.release_dt}} | 러닝타임 :
+            {{video.running_time}}분
+            </h4>
+            <br>
+            <h6>{{video.description}}</h6>
+        </div>
+    </div>
+
 </div>
 <div id = "guard">
 
 </div>
 <div class='layer1'>
     
-<div class='container full-width'>
-    <div>
-        <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-    </div>
-    <div class="form-row float-right">
-        <button type="button" class="btn btn-outline-danger">추천</button>
-        <button type="button" class="btn btn-outline-danger">찜하기</button>
-    </div>
+
     
-    <div id='absolute'>
-    {% for review in page_obj %}
-    <h1>
-        <li><a href='#'>{{review.re_title}} </a></li>
-    </h1>
-    (작성자 : {{review.user_id}})
-    {{review.content|safe}}
-        <button type="button" class="btn btn-info btn-sm">
-            <a href="/review/{{ review.id }}/updateReview/">수정</a>
-        </button>
-        <button type="button" class="btn btn-danger btn-sm"> 
-            <a href="/review/{{ review.id }}/deleteReview/">삭제</a>
-        </button>
-    {% endfor %}
-    
-    <br><br>
-    <div>
-        <span>
-            {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
-            {% endif %}
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-            {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
-            {% endif %}
-        </span>
-    </div>
+    <br><br><br><br><br><br><br><br>
+    <div style="text-align: center;">
+        <h3>Review</h3><br>
     </div>
 
-    <br><br>
+    <div class="container">
+    <table class="table">
+      
+        <thead>
+          
+          
+            <tr align="center">
+                <th>제목</th>
+                <th>글쓴이</th>
+                <th>등록 날짜</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for review in page_obj %}
+            <tr align="center">
+                <td width="600px">
+                    <a href="#">{{review.re_title}}</a>
+                </td>
+                <td width="100px">{{review.user_id}}</td>
+                <td>{{review.create_dt}}</td>
+                <td>{{review.read_cnt}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+        
+      </table>
+    </div>
+
+
+      <br><br>
+      <div class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+        {% endif %}
+        
+    
+    
+        {%for i in page_obj.paginator.page_range%}
+        {%if page_obj.number == i%}
+        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+        {%else%}
+        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {%endif%}
+        {%endfor%}
+
+
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        {% endif %}
+
+      </div>
+
+      
+
+
+
+
+
+    <br><br><br><br><br><br>
     <!-- 여기서 부터 리뷰작성 부분 -->
     
-    <div class="container">
-        <h4>리뷰를 남겨주세요.</h4>
+
+
+    <div style="text-align: center;">
+        <hr width="100%" color="white" size="1">
+        
+        <h3>Review 작성</h3>
+        <br>
+    </div>
+
+    <div class="container" id="container2">
+        <br>
     {% if form.errors %} 
-        <div class="alert alert-danger"> 
+        <div class="alert alert-danger" id="rv-form2"> 
             <div class="font-weight-bold">
                 Wrong! Please correct the error(s) below.</div> 
             {{ form.errors }} 
         </div> 
         {% endif %}
-        <form action="." method="post" enctype="multipart/form-data" class="card pt-3">{% csrf_token %} 
-            <div class="form-group row"> 
+        
+        <form action="." method="post" enctype="multipart/form-data" class="card pt-3" id="card2">{% csrf_token %} 
+            <div class="form-group row" id="form-group2">  
                 {{ form.re_title|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
                 <div class="col-sm-5"> 
                     {{ form.re_title|add_class:"form-control"|attr:"autofocus" }} 
                 </div> 
             </div> 
-            <div class="form-group row"> 
+            <div class="form-group row" id="form-group2"> 
                 {{ form.content|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
                 <div class="col-sm-8"> 
                     {{ form.content|add_class:"form-control" }}
@@ -125,8 +170,8 @@
             </div>
         </form> 
     </div>
-</div>
-<br><br><br><br><br>
+</>
+<br><br><br>
 {% endblock %}
 
 {% block extra-script %} 

@@ -26,3 +26,14 @@ class ReviewDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})
+
+class ReviewDV(DetailView):
+    model = Review
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        count_view = self.get_object()
+        if count_view.owner != self.request.user:
+            count_view.read_cnt = count_view.read_cnt + 1
+            count_view.save()
+        return context

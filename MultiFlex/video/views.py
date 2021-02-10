@@ -87,7 +87,7 @@ class VideoDV(DetailView, FormMixin):
 
         context['form'] = ReviewForm(initial={'re_title':'','text': '',})   
         context['user_id'] = self.request.user 
-        context['reviews'] = self.object.review_set.all()         
+        context['reviews'] = self.object.review_set.all()        
         return context
     
     def post(self, request, *args, **kwargs):
