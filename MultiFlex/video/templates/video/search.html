@@ -55,14 +55,33 @@
                 margin: 0%;
             }
         }
+       form{
+           width : 50%
+       }
     </style>
 {% endblock %}
 
 {% block content %}
+<br><br>
+
 <center>
-    <form action="." method="post"> {% csrf_token %}
-        {{ form.as_table }}
-        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    
+    <div>
+        <h1>Search</h1>
+    </div>
+
+    <div class="container">
+        <form action="." method="post">{% csrf_token %}
+            {{ form.search_word|add_class:"form-control" }}
+            <ul>찾으시려는 감독명이나 제목(일부)을 입력하시면 됩니다.</ul>
+            <input type="submit" value="검색" class="btn btn-info btn-danger">
+        </form>
+
+    </div>
+    
+
+
+        
     </form>
 
     <div class="container">
@@ -86,5 +105,6 @@
     {% elif search_term %}
     <b><i>Multiflex에는 ({{ search_term }})은 없습니다..ㅠㅠ</i></b>
     {% endif %}
+    
 </center>
 {% endblock %}

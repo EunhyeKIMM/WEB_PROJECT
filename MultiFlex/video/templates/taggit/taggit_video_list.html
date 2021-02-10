@@ -2,7 +2,7 @@
 {% block title %}taggit_post_list.html{% endblock %}
 {% block content %}
 
-<h1>Posts for tag - {{ tagname }}</h1>
+<h1>{{ tagname }}</h1>
 <br>
 {% for post in object_list %}
 <h2><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
