@@ -32,6 +32,8 @@ class ReviewDV(DetailView):
             count_view.read_cnt = count_view.read_cnt + 1
             count_view.save()
         return context
+
+        
 class ReviewList(ListView):
     model = Review
     template_name = 'review/myreview.html'
