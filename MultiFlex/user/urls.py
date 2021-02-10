@@ -2,6 +2,8 @@ from django.urls import path
 from mysite.views import UserCreateDoneTV
 from user import views
 from review.views import ReviewList
+from mysite.views import UserCreateDoneTV
+
 
 urlpatterns = [
     path('register/', views.register, name='register'),

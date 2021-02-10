@@ -1,15 +1,11 @@
 # from typing import List
-from user.form import MyPage_reView
-from video.form import ReviewForm
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password # 비밀번호 암호화 / 패스워드 체크
 from .models import User
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView
-from django.urls import reverse, reverse_lazy
-from review.models import Review
-from django.core.paginator import Paginator
+from django.urls import reverse
+from .models import User
 # Create your views here.
 
 def register(request):  # 회원가입 함수
