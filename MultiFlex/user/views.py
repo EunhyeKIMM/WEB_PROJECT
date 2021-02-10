@@ -1,9 +1,15 @@
+# from typing import List
+from user.form import MyPage_reView
+from video.form import ReviewForm
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password # 비밀번호 암호화 / 패스워드 체크
 from .models import User
 from django.contrib.auth.decorators import login_required
-from django.views.generic import DetailView
+from django.views.generic import ListView, DetailView
+from django.urls import reverse, reverse_lazy
+from review.models import Review
+from django.core.paginator import Paginator
 # Create your views here.
 
 def register(request):  # 회원가입 함수
@@ -36,13 +42,11 @@ def register(request):  # 회원가입 함수
                 username = username
             )
             user.save()
-<<<<<<< HEAD
-            return redirect('register_done.html')
-            # return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
+            return HttpResponseRedirect(reverse('register_done'))
             
 
 @login_required # 로그인 된 상태에서만 사용 가능
-def userpage(request):
+def userPage(request):  # 유저 마이페이지
     connect_user = request.user
 
     context = {
@@ -55,41 +59,11 @@ def userpage(request):
     }
     return render(request, 'mypage.html', context=context)
 
-# def userinfo(request):  # 유저 마이페이지
-#     connect_user = request.user
 
-#     context = {
-#         'email' : connect_user.email,
-#         'username' : connect_user.username,
-#         'phone' : connect_user.phone,
-#         'gender' : connect_user.gender,
-#         'age' : connect_user.age
-#     }
-#     return render(request, 'mypage_info.html', context=context)
-    
 
-# class UserDV(DetailView):
-#     model = User
-#     context_object_name = 'mypage'
-#     template_name = 'user/mypage.html'
-   
-#     # Detail View에서는 paginate_by없기 때문에 만들어줘야 한다
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         video = context['video']
-#         review_list = video.review_set.all()   #.order_by('-create_dt')[:5]
-#         paginator = Paginator(review_list, 2) #한 페이지에 보여줄 개수 
-        
-#         page_number = self.request.GET.get('page') # 현재 페이지 받아옴
-#         page_obj = paginator.get_page(page_number) # 현재 페이지에 있는 목록 
 
-#         context['paginator'] = paginator
-#         context['page_obj'] = page_obj #페이지 목록
-#         return context
 
-=======
-            return render(request, 'register_done.html', res_data)   # register를 요청받으면 register.html로 응답
->>>>>>> master
+
 
 
 # def login(request):

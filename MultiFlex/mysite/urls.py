@@ -21,15 +21,11 @@ from mysite.views import Homeview, MainHomeView, UserCreateDoneTV
 
 
 urlpatterns = [
-    path('', Homeview.as_view(), name='home'),
+    path('', MainHomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('user/', include('user.urls')),
     path('review/', include('review.urls')),
     path('video/', include('video.urls')),
-  
-    path('mainhome/', MainHomeView.as_view(), name='realmainhome'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('register/register_done/', UserCreateDoneTV.as_view(), name='register_done'),
-
 ]

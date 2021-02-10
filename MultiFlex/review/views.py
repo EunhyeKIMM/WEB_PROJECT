@@ -26,3 +26,11 @@ class ReviewDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})
+
+class ReviewList(ListView):
+    model = Review
+    template_name = 'review/myreview.html'
+
+    def get_queryset(self):
+        # return Review.objects.all()
+        return Review.objects.filter(user_id = self.request.user)

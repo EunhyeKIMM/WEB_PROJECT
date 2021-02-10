@@ -1,18 +1,17 @@
 from django.urls import path
+from mysite.views import UserCreateDoneTV
 from user import views
-# from mysite.views import UserCreateDoneTV
-
-<<<<<<< HEAD
-
-=======
-# app_name = 'user' 
->>>>>>> master
+from review.views import ReviewList
 
 urlpatterns = [
     path('register/', views.register, name='register'),
+    path('register/done/', UserCreateDoneTV.as_view(), name='register_done'),
+    path('myreview/', ReviewList.as_view(), name='myreview'),
+    path('', views.userPage, name='mypage'),
+    
+]
+
+
+
     # path('login/', views.login, name='login'),            # 나중에 혼자하는거.
     # path('logout/', views.logout, name='logout'),
-    path('', views.userpage, name='mypage'),
-    # path('mypage_info/', views.userinfo, name='mypage_info'),
-    # path('register/register_done/', UserCreateDoneTV.as_view(), name='register_done'),
-]
