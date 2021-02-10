@@ -173,23 +173,8 @@ class SearchView(FormView):
         context['search_term'] = searchWord
         context['object_list'] = video_list
 
-        return context
+        return render(self.request, self.template_name, context)
     
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()
-
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.video_id = get_object_or_404(Video, pk=self.object.pk)
-        comment.user_id = self.request.user
-        comment.save() 
-        return super(VideoDV, self).form_valid(form)
 
 class TagCloudTV(TemplateView):
     template_name = 'taggit/taggit_cloud.html'
