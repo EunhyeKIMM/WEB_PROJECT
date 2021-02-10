@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import (ListView, DetailView, TemplateView,
                                 FormView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,14 +17,14 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
-class VideoUploadView(CreateView):
+class VideoUploadView(CreateView, LoginRequiredMixin):
     model = Video
     template_name = 'video/video_upload_form.html'
     fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade', 'video_link', 'video_thumb' ]
     success_url = reverse_lazy('video:upload_Video') # 추후에 Detail로 변경 
 
 
-class VideoUpdateView(UpdateView):
+class VideoUpdateView(UpdateView, OwnerOnlyMixin):
     model = Video
     template_name = 'video/video_upload_form.html'
     fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade' ]
@@ -33,7 +33,7 @@ class VideoUpdateView(UpdateView):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id})
 
 
-class VideoDeleteView(DeleteView):
+class VideoDeleteView(DeleteView, OwnerOnlyMixin):
     model = Video
     template_name = 'video/video_delete_confirm.html'
     success_url = reverse_lazy('video:upload_Video') # Index 페이지로 바꿔야 함. 
@@ -67,7 +67,7 @@ class VideoLV(ListView):
 
 #     return render(request, 'video/index.html',context)
 
-class VideoDV(DetailView, FormMixin):
+class VideoDV(DetailView, FormMixin, LoginRequiredMixin):
     model = Video
     context_object_name = 'video'
     template_name = 'video/video_detail.html'
@@ -126,8 +126,12 @@ def like(request):
 
     if video.recommend.filter(id=user.id).exists():
         video.recommend.remove(user)
+        video.like -= 1
+        video.save()
     else: 
         video.recommend.add(user)
+        video.like += 1
+        video.save()
     context = {'like_count': video.count_like_user()}
  
     return HttpResponse(json.dumps(context), content_type="application/json")
@@ -188,7 +192,7 @@ class TaggedObjectLV(ListView):
         return context
 
        
-class DibsView(ListView):
+class DibsView(ListView, LoginRequiredMixin):
     model = Video
     template_name = 'video/video_dibs.html'
 

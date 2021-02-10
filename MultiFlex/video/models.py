@@ -33,6 +33,7 @@ class Video(models.Model):
     video_link = models.URLField(verbose_name="VIDEO_URL", max_length=350)
     video_thumb = models.URLField(verbose_name="THUMBNAIL_URL", max_length=350)
     bookmark = models.ManyToManyField(User, blank=True, related_name='dibs_user')
+    like = models.IntegerField(verbose_name="좋아요수", default=0)
 
     class Meta:
         verbose_name = 'video'
