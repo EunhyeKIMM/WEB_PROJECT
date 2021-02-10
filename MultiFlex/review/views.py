@@ -3,7 +3,7 @@ from review.models import *
 from django.urls import reverse_lazy
 from mysite.views import OwnerOnlyMixin 
 from video.models import *
-
+from django.views.generic import ListView
 
 class ReviewUpdateView(UpdateView, OwnerOnlyMixin):
     model = Review
