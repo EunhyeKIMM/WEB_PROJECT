@@ -87,7 +87,7 @@
             {% for review in page_obj %}
             <tr align="center">
                 <td width="600px">
-                    <a href="{% url 'review:review_detail' video.video_id %}">{{review.re_title}}</a>
+                    <a href="{% url 'review:review_detail' review.id %}">{{review.re_title}}</a>
                 </td>
                 <td width="100px">{{review.user_id}}</td>
                 <td>{{review.create_dt}}</td>
