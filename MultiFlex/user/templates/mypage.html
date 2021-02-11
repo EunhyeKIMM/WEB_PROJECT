@@ -30,14 +30,14 @@
             <a type="radio" name="options" id="option1" autocomplete="off" href='#' checked> 계정 </a>
         </label>
         <label class="btn btn-secondary">
-            <a type="radio" name="options" id="option1" autocomplete="off" href='#' checked> 나의 컨텐츠 </a>
+            <a type="radio" name="options" id="option1" autocomplete="off" href='{% url "video:dibs_list" %}' checked> 나의 컨텐츠 </a>
         </label>
         <label class="btn btn-secondary">
             <a type="radio" name="options" id="option1" autocomplete="off" href='{% url "myreview" %}' checked> 내가 쓴 리뷰
             </a>
         </label>
         <label class="btn btn-secondary">
-            <a type="radio" name="options" id="option1" autocomplete="off" href='#' checked> 관심 태그 </a>
+            <a type="radio" name="options" id="option1" autocomplete="off" href='{% url "site_info" %}' checked> 관심 태그 </a>
         </label>
     </div>
     <br><br>
