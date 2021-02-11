@@ -8,24 +8,26 @@
         <div class="container">
         <br>
         <br><br><br>
-        <h1>리뷰 작성</h1>
+        <h1>리뷰 수정</h1>
         <br><br><br>
         
+        <div class="container" id="container2">
+
         {% if form.errors %} 
-        <div class="alert alert-danger"> 
+        <div class="alert alert-danger" id="rv-form2"> 
             <div class="font-weight-bold">
                 Wrong! Please correct the error(s) below.</div> 
             {{ form.errors }} 
         </div> 
         {% endif %}
-        <form action="." method="post" enctype="multipart/form-data" class="card pt-3">{% csrf_token %} 
-            <div class="form-group row"> 
+        <form action="." method="post" enctype="multipart/form-data" class="card pt-3" id="card2">{% csrf_token %} 
+            <div class="form-group row"id="form-group2"> 
                 {{ form.re_title|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
                 <div class="col-sm-5"> 
                     {{ form.re_title|add_class:"form-control"|attr:"autofocus" }} 
                 </div> 
             </div> 
-            <div class="form-group row"> 
+            <div class="form-group row" id="form-group2"> 
                 {{ form.content|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
                 <div class="col-sm-8"> 
                     {{ form.content|add_class:"form-control" }}
