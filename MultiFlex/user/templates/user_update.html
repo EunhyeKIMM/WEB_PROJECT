@@ -1,14 +1,14 @@
 {%extends "base.html"%}
 {%load widget_tweaks%}
 
-{%block title%}register.html{%endblock%}
+{%block title%}update.html{%endblock%}
 
 {%block content%}
 
 
 <div class="row mt-5">
     <div class="col-12 text-center">
-        <h1>회원가입</h1>
+        <h1>회원정보 수정</h1>
     </div>
 </div>
 
@@ -17,25 +17,14 @@
 <!-- bootstrap -component - forms -->
 <div class="container">
 <div class="row mt-5" id="bg">
-    {{error}}
     <div class="col-12 " id="bg2">
         <div class="row mt-5" id="bg3">
             <div class="col-12 " id="bg4">
                 <form method="POST" action="." class="card pt-3" id="bg5">
                     {% csrf_token %}
-                    <div class="form-group" id="email">
-                        <label for="email">이메일</label>
-                        <input type="email" class="form-control" id="email" placeholder="이메일" name="email">
-                        <!-- 이 email 값으로 정보가 전달된다 -->
-                    </div>
-                    <div class="form-group" id="password">
-                        <label for="password">비밀번호</label>
-                        <input type="password" class="form-control" id="password" placeholder="비밀번호" name="password">
-                    </div>
-                    <div class="form-group" id="password2">
-                        <label for="re_password">비밀번호 확인</label>
-                        <input type="password" class="form-control" id="re_password" placeholder="비밀번호 확인"
-                            name="re_password">
+                    <div class="form-group" id="hi">
+                        <label for="username">이름</label>
+                        <input type="name" class="form-control" id="username" placeholder="이름" name="username">
                     </div>
                     <div class="form-group" id="hi2">
                         <label for="age">나이</label>
@@ -53,11 +42,7 @@
                         <label for="phone">연락처</label>
                         <input type="tel" class="form-control" id="phone" placeholder="연락처" name="phone">
                     </div>
-                    <div class="form-group" id="hi">
-                        <label for="username">이름</label>
-                        <input type="name" class="form-control" id="username" placeholder="이름" name="username">
-                    </div>
-                    <button type="submit" class="btn btn-primary" value="Register">등록</button>
+                    <button type="submit" class="btn btn-primary" value="Register">수정</button>
                 </form>
             </div>
         </div>

@@ -174,7 +174,7 @@ class SearchView(FormView):
         context['object_list'] = video_list
 
         return render(self.request, self.template_name, context)
-    
+
 
 class TagCloudTV(TemplateView):
     template_name = 'taggit/taggit_cloud.html'

@@ -62,7 +62,6 @@
             <h6>{{video.description}}</h6>
         </div>
     </div>
-
 </div>
 <div id = "guard">
 
@@ -94,7 +93,7 @@
             {% for review in page_obj %}
             <tr align="center">
                 <td width="600px">
-                    <a href="#">{{review.re_title}}</a>
+                    <a href="{% url 'review:review_detail' review.id %}">{{review.re_title}}</a>
                     {% if user_id == review.user_id %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-info btn-sm"><a href="{% url 'review:update_review' review.id %}">수정</a></button>
                     <button type="button" class="btn btn-danger btn-sm"><a href="{% url 'review:delete_review' review.id %}">삭제</a></button>

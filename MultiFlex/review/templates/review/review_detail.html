@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}review_detail.html{% endblock %}
+
+{% load widget_tweaks %} 
+{% block content %}
+
+<h1>{{review.re_title}}</h1>
+작성자 : {{review.user_id}}
+<br>
+{{ review.content|safe }}
+
+
+
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12 comment-bg">
+            <!--댓글 헤더-->
+            <div class = "page-header">
+                <h5>댓글</h5>
+            </div>
+            <!--댓글 목록-->
+            <div class = "comments-list">
+                {% for comment in comment_list %}
+                <div class = "media">
+                    <div class = "media-body">
+                        <h4 class = "media-heading user_name">
+                            {{comment.author}}
+                        </h4>
+                        {{comment.text}}
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!--댓글 작성-->
+            <div class = "row">
+                {% if errors %}
+                <ul>
+                    {% for error in errors %}
+                    <li><div class = "alert alert-primary">{{error}}</div></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <h7>댓글 쓰기</h7>
+                <form action="." method="post" enctype="multipart/form-data" class="card pt-3">{% csrf_token %} 
+                    <div class="form-group row"> 
+                        {{ form.document|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+                        <div class="col-sm-5"> 
+                            {{ form.document|add_class:"form-control"|attr:"autofocus" }} 
+                        </div> 
+                    </div> 
+                    <div class="form-group row"> 
+                        {{ form.text|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+                        <div class="col-sm-8"> 
+                            {{ form.text|add_class:"form-control" }}
+                        </div> 
+                    </div>
+                    <div class="form-group"> 
+                        <div class="offset-sm-2 col-sm-5"> 
+                            <input type="submit" value="Submit" class="btn btn-info"/> 
+                        </div> 
+                    </div>
+                </form>
+            </div>   
+        </div>
+    </div>
+    
+    
+{% endblock %}
