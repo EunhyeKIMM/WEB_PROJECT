@@ -50,7 +50,7 @@
               <td>{{ review.id }}</td>
               <td>{{review.video_id}}</td>
               <td>
-                  <a href="#" target="_blank">{{review.re_title}}</a>
+                  <a href="{% url 'review:review_detail' review.id %}" target="_blank">{{review.re_title}}</a>
               </td>
               <td>{{ review.content }}</td>
               <td>{{ review.create_dt }}</td>
