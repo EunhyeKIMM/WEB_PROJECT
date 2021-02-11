@@ -34,35 +34,27 @@
                 {% endfor %}
             </div>
             <!--댓글 작성-->
-            <div class = "row">
-                {% if errors %}
-                <ul>
-                    {% for error in errors %}
-                    <li><div class = "alert alert-primary">{{error}}</div></li>
-                    {% endfor %}
-                </ul>
+            <div class="container" id="container2">
+                <br>
+            {% if form.errors %} 
+                <div class="alert alert-danger" id="rv-form2"> 
+                    <div class="font-weight-bold">
+                        Wrong! Please correct the error(s) below.</div> 
+                    {{ form.errors }} 
+                </div> 
                 {% endif %}
-                <h7>댓글 쓰기</h7>
-                <form action="." method="post" enctype="multipart/form-data" class="card pt-3">{% csrf_token %} 
-                    <div class="form-group row"> 
-                        {{ form.document|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+                
+                <form action="." method="post">{% csrf_token %} 
+                    <div class="form-group row" id="form-group2">  
+                        {{ form.text|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
                         <div class="col-sm-5"> 
-                            {{ form.document|add_class:"form-control"|attr:"autofocus" }} 
+                            {{ form.text|add_class:"form-control"}} 
                         </div> 
                     </div> 
-                    <div class="form-group row"> 
-                        {{ form.text|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
-                        <div class="col-sm-8"> 
-                            {{ form.text|add_class:"form-control" }}
-                        </div> 
+                        <input type="submit" value="댓글 쓰기" class="btn btn-info"/>
                     </div>
-                    <div class="form-group"> 
-                        <div class="offset-sm-2 col-sm-5"> 
-                            <input type="submit" value="Submit" class="btn btn-info"/> 
-                        </div> 
-                    </div>
-                </form>
-            </div>   
+                </form> 
+            </div>
         </div>
     </div>
     

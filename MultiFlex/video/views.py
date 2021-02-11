@@ -88,7 +88,7 @@ class VideoDV(DetailView, FormMixin, LoginRequiredMixin):
 
         context['paginator'] = paginator
         context['page_obj'] = page_obj #페이지 목록
-
+    
         context['form'] = ReviewForm(initial={'re_title':'','text': '',})   
         context['user_id'] = self.request.user 
         context['reviews'] = self.object.review_set.all() 
