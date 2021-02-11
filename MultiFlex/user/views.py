@@ -8,8 +8,7 @@ from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import User
-from .form import CheckPasswordForm, CustomUserChangeForm
-# from user.form import CustomUserChangeForm
+from .form import CheckPasswordForm
 
 # Create your views here.
 
@@ -45,7 +44,6 @@ def register(request):  # 회원가입 함수
             user.save()
             return HttpResponseRedirect(reverse('register_done'))
             
-
 @login_required # 로그인 된 상태에서만 사용 가능
 def userPage(request):  # 유저 마이페이지
     connect_user = request.user
@@ -59,7 +57,6 @@ def userPage(request):  # 유저 마이페이지
         'age' : connect_user.age
     }
     return render(request, 'mypage.html', context=context)
-
 
 @login_required
 def change_password(request):
@@ -90,8 +87,6 @@ def delete(request):
         password_form = CheckPasswordForm(request.user)
 
     return render(request, 'user_delete.html', {'password_form':password_form})
-
-
 
 @login_required
 def update(request):
