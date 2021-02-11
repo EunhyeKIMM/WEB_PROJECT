@@ -4,5 +4,5 @@ from review.models import Comment
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['document','author','text']
+        fields = ['text']
 

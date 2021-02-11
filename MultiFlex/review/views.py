@@ -39,7 +39,7 @@ class ReviewDV(DetailView,FormMixin):
         review = context['review']
         comment_list = review.comment_set.all()
         context['comment_list']= comment_list
-        context['form'] = CommentForm(initial={'document':'','text':'',})
+        context['form'] = CommentForm(initial={'text':'',})
         context['user_id'] = self.request.user        
         return context
   
@@ -49,18 +49,19 @@ class ReviewDV(DetailView,FormMixin):
     def post(self,request,*args,**kwargs):
         self.object = self.get_object()
         form = self.get_form()
-
+        
         if form.is_valid():
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
 
-    def form_valid(self,form):
-        comment = form.save(commit=False)
-        comment.review_id = get_object_or_404(Review,pk=self.object.pk)
-        comment.user_id = self.request.user
-        comment.save()
-        return super(ReviewDV,self).form_valid(form)
+    def form_valid(self, form):
+        dat = form.save(commit=False)
+        dat.document = get_object_or_404(Review, pk=self.object.pk)
+        dat.author = self.request.user
+        dat.save()
+        return super(ReviewDV, self).form_valid(form)
+
 
 class ReviewList(ListView):
     model = Review

@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
-{% load taggit_templatetags2_tags%}
+{%load static%}
 {% block title %}main_home.html{% endblock %}
 
 {% block extra-style %}
+    
 
-<style>
+{% load taggit_templatetags2_tags%}
+
+
+<style type="text/css">
     .swiper-container {
         display: grid;
         width: 100%;
@@ -34,52 +38,86 @@
         align-items: center;
     }
 
+    @media(max-width: 1200px) {
+        .swiper-container {
+            display: inline-grid;
+            grid-template-columns: repeat(3, 400px);
+            grid-row-gap: 60px;
+            background-color: rgb(50, 50, 55);
+            padding: 10px;
+            offset-block-end: 10px;
+            margin: 0%;
+        }
+    }
+
+    @media(max-width: 800px) {
+        .swiper-container {
+            display: inline-grid;
+            grid-template-columns: repeat(2, 400px);
+            grid-row-gap: 60px;
+            background-color: rgb(50, 50, 55);
+            padding: 10px;
+            offset-block-end: 10px;
+            margin: 0%;
+        }
+    }
+
+    @media(max-width: 400px) {
+        .swiper-container {
+            display: inline-grid;
+            grid-template-columns: repeat(1, 400px);
+            grid-row-gap: 60px;
+            background-color: rgb(50, 50, 55);
+            padding: 10px;
+            offset-block-end: 10px;
+            margin: 0%;
+        }
+    }
+
+    .jumbotron{
+        background-image: url(../static/img/6.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding-top: 200px;
+        padding-bottom:400px;
+        width: 100%;
+        height: 0;
+        padding-top : calc (300 / 1000 * 100 );
+    }
+    .jumbotron .tog{
+        position: absolute;
+        right: 30px;
+        top: 95px;
+    }
+
+
+    
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- <center>
 
-<div style="text-align: right;">
-    <a href="?theme=light" class="btn btn-light">light</a>
-    <a href="?theme=dark" class="btn btn-dark">dark</a>
-    <br><br>
-  </div>
 
-<center>
-    <div class="container-fluid" style="margin: 0%; background-color: cornflowerblue;">
-        <div class="container">
-            <h1>멀티플렉스 메인 화면입니다. </h1>
-        </div>
-    </div>
 
-    <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">Top 10</div> 
-    <div class="grid-container">
-        {% for value in top_10 %}      
-            <div class="grid-item">
-                <button type="button" class="btn btn-light" style="padding: 0%;">
-                    <div class="card" style="width:400px">
-                        <a href="{{value.get_absolute_url}}">
-                                <img class="card-img-top" src ="{{ value.video_thumb }}">
-                        </a> 
-                    </div>
-                </button>
-            </div>
-        {% endfor %}
-    </div>
-</center> -->
-<center>
-    <div style="text-align: right;">
+
+<div class="container-fluid"></div>
+
+<div class="jumbotron" >
+    <div class="tog">
         <a href="?theme=light" class="btn btn-light">light</a>
         <a href="?theme=dark" class="btn btn-dark">dark</a>
         <br><br>
-    </div>
-    <div class="container-fluid" style="margin: 0%; background-color: cornflowerblue;">
-        <div class="container">
-            <h1>멀티플렉스 메인 화면입니다. </h1>
-        </div>
-    </div>
+      </div>
+</div>
+</div>
 
+
+
+
+
+
+<center>
     <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 100%; ">Top 10</div>
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -130,7 +168,6 @@
 
 {% block extra-script %}
 <script>
-
     function detectMediaSize() { 
     if ( window.matchMedia('(min-width: 0px) and (max-width: 750px)').matches ) {
         // console.log('Mobile');
@@ -181,14 +218,14 @@
         var swiper = new Swiper('.swiper-container', {
         slidesPerView: 4,
         spaceBetween: 30,
-        slidesPerGroup: 2,
+        slidesPerGroup: 4,
         loop: true,
         loopFillGroupWithBlank: true,
 
-    //     autoplay: {
-    //     delay: 2500,
-    //     disableOnInteraction: false,
-    //   },
+        autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -200,7 +237,6 @@
     });
     }
 };
-
 // Register
 window.addEventListener('resize', detectMediaSize, false);
 
