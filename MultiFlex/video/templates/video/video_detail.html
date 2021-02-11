@@ -31,31 +31,7 @@
 
 
 {% block content %}
-<<<<<<< HEAD
-<!-- <div class="video1">
-=======
-<div class="video1">
->>>>>>> master
-    <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-        <div>
-            <h1>{{video.title}} </h1>
-            <h2>장르 : {% load taggit_templatetags2_tags %}{%get_tags_for_object object as "genre" %}{% for tag in genre %}
-                <a href="{% url 'video:tagged_object_list' tag.name %}">{{tag.name}}</a>
-                {%endfor%}
-                &emsp; <a href="{% url 'video:tag_cloud' %}"><span class="btn btn-into btn-sm">Genre</span></a> 
-                | 감독 : {{video.director}} | 개봉 일 : {{video.release_dt}} | 러닝타임 :
-                {{video.running_time}}분
-            </h2>
-            <h3>{{video.description}}</h3>
-        </div>
-    
-</div>
-<div id = "guard">
 
-</div>
-<div class='layer1'> -->
     
 <div class='container full-width'>
     <div>
