@@ -16,7 +16,7 @@ Including another URLconf
 from os import name
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import MainHomeView
+from mysite.views import MainHomeView, SiteInfoView
 
 
 
@@ -29,4 +29,5 @@ urlpatterns = [
     path('review/', include('review.urls')),
     path('video/', include('video.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('siteInfo', SiteInfoView.as_view(), name='site_info')
 ]

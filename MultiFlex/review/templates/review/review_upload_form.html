@@ -1,13 +1,15 @@
 {% extends "base.html" %} 
 {% load widget_tweaks %} 
 
-{% block title %}post_form.html{% endblock %}
+{% block title %}review_update_form.html{% endblock %}
 
 {% block content %}
     <center>
+        <div class="container">
         <br>
+        <br><br><br>
         <h1>리뷰 작성</h1>
-        <br>
+        <br><br><br>
         
         {% if form.errors %} 
         <div class="alert alert-danger"> 
@@ -30,11 +32,12 @@
                 </div> 
             </div>
             <div class="form-group"> 
-                <div class="offset-sm-2 col-sm-5"> 
-                    <input type="submit" value="Submit" class="btn btn-info"/> 
+                <div class="col-sm-5"> 
+                    <input type="submit" value="수정하기" class="btn btn-info"/> 
                 </div> 
             </div>
         </form> 
+    </div>
     </center>
 {% endblock %}
 

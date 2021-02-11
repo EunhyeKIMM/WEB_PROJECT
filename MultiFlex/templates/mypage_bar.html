@@ -1,0 +1,47 @@
+{%extends "base.html"%}
+{%load widget_tweaks%}
+
+{%block title%}mypage_bar.html{%endblock%}
+
+{% block extra-style %}
+
+<style>
+    .eunhye-container {
+            position: relative;
+            display: block;
+            width: 75%;
+            }
+
+    #option1 {
+        text-decoration : none;
+        color: white;
+        color: aliceblue;
+    }
+</style>
+    {% block mypage-extra-style %}{% endblock %}
+{% endblock %}
+
+{%block content%}
+<center>
+<div class="eunhye-container">
+    <br><br><br>
+    <h1>{{user.username}}의 My page</h1>
+    <br><br>
+    <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
+        <label class="btn btn-secondary">
+            <a type="radio" name="options" id="option1" autocomplete="off" href='/user/' checked> 계정 </a>
+        </label>
+        <label class="btn btn-secondary">
+            <a type="radio" name="options" id="option1" autocomplete="off" href="{% url 'video:dibs_list' %}" checked> 나의 컨텐츠 </a>
+        </label>
+        <label class="btn btn-secondary">
+            <a type="radio" name="options" id="option1" autocomplete="off" href='{% url "myreview" %}' checked> 내가 쓴 리뷰 </a>
+        </label>
+        <label class="btn btn-secondary">
+            <a type="radio" name="options" id="option1" autocomplete="off" href="{% url 'site_info' %}" checked> 사이트 정보 </a>
+        </label>
+    </div>
+    {% block mypage-content%}{% endblock %}
+</div>
+</center>
+{%endblock%}

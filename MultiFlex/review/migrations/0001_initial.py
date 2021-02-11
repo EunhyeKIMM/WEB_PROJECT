@@ -11,6 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('video', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -26,6 +27,7 @@ class Migration(migrations.Migration):
                 ('like', models.PositiveIntegerField(default=0, verbose_name='좋아요')),
                 ('read_cnt', models.IntegerField(default=0)),
                 ('user_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='작성자')),
+                ('video_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='video.video', verbose_name='영상')),
             ],
         ),
     ]

@@ -42,7 +42,7 @@ class ReviewDV(DetailView,FormMixin):
         context['form'] = CommentForm(initial={'document':'','text':'',})
         context['user_id'] = self.request.user        
         return context
-
+  
     def get_success_url(self):
         return reverse('review:review_detail', kwargs={'pk':self.object.pk})
     
@@ -65,6 +65,7 @@ class ReviewDV(DetailView,FormMixin):
 class ReviewList(ListView):
     model = Review
     template_name = 'review/myreview.html'
+    paginate_by = 10
 
     def get_queryset(self):
         # return Review.objects.all()
