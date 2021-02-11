@@ -10,12 +10,18 @@
       text-decoration : none;
       color: aliceblue;
   }
+
+  .container h1{
+    text-align: center;
+  }
 </style>
 
 {% endblock %}
 
 {%block content%}
-    <h1>{{user.username}}의 My page</h1>
+<br>
+  <div class="container">
+    <h1>{{user.username}}의 My page</h1><br>
     <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
         <label class="btn btn-secondary active">
           <a type="radio" name="options" id="option1" autocomplete="off" href='{% url "mypage" %}'> 계정 </a>
@@ -30,7 +36,7 @@
           <a type="radio" name="options" id="option1" autocomplete="off" href='#'> 관심 태그 </a>
         </label>
     </div>
-
+  
     
     <table class="table">
       
@@ -50,13 +56,15 @@
               <td>{{ review.id }}</td>
               <td>{{review.video_id}}</td>
               <td>
-                  <a href="#" target="_blank">{{review.re_title}}</a>
+                  <a href="#" target="_blank" id="option1">{{review.re_title}}</a>
               </td>
               <td>{{ review.content }}</td>
               <td>{{ review.create_dt }}</td>
           </tr>
           {%endfor%}
       </tbody>
+  
       
     </table>
+  </div>
 {%endblock%}

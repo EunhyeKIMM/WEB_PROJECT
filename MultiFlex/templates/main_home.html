@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{%load static%}
 {% block title %}main_home.html{% endblock %}
 
 {% block extra-style %}
@@ -57,7 +57,7 @@
         }
     </style> -->
     
-<style>
+<style type="text/css">
     .swiper-container {
         display: grid;
         width: 100%;
@@ -122,51 +122,53 @@
             margin: 0%;
         }
     }
+
+    .jumbotron{
+        background-image: url(../static/img/6.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding-top: 200px;
+        padding-bottom:400px;
+        width: 100%;
+        height: 0;
+        padding-top : calc (300 / 1000 * 100 );
+        z-index: 1;
+    }
+    .jumbotron .tog{
+        position: absolute;
+        right: 30px;
+        top: 95px;
+    }
+
+
+    
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- <center>
 
-<div style="text-align: right;">
-    <a href="?theme=light" class="btn btn-light">light</a>
-    <a href="?theme=dark" class="btn btn-dark">dark</a>
-    <br><br>
-  </div>
 
-<center>
-    <div class="container-fluid" style="margin: 0%; background-color: cornflowerblue;">
-        <div class="container">
-            <h1>멀티플렉스 메인 화면입니다. </h1>
-        </div>
-    </div>
 
-    <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">Top 10</div> 
-    <div class="grid-container">
-        {% for value in top_10 %}      
-            <div class="grid-item">
-                <button type="button" class="btn btn-light" style="padding: 0%;">
-                    <div class="card" style="width:400px">
-                        <a href="{{value.get_absolute_url}}">
-                                <img class="card-img-top" src ="{{ value.video_thumb }}">
-                        </a> 
-                    </div>
-                </button>
-            </div>
-        {% endfor %}
-    </div>
-</center> -->
-<center>
-    <div style="text-align: right;">
+
+<div class="container-fluid"></div>
+
+<div class="jumbotron" >
+    <div class="tog">
         <a href="?theme=light" class="btn btn-light">light</a>
         <a href="?theme=dark" class="btn btn-dark">dark</a>
         <br><br>
       </div>
-    <div class="container-fluid" style="margin: 0%; background-color: cornflowerblue;">
-        <div class="container">
-            <h1>멀티플렉스 메인 화면입니다. </h1>
-        </div>
-    </div>
+</div>
+</div>
+
+
+
+
+
+
+<center>
+
 
     <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">Top 10</div>
     <div class="swiper-container">
@@ -185,6 +187,31 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
     </div>
+
+
+    <br><br><br>
+    <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">{{tag.name}}</div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {%for value in top_10 %}
+            <div class="swiper-slide">
+                <a href="{{value.get_absolute_url}}">
+                    <img id='slider' src="{{ value.video_thumb }}">
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- 버튼 -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+
+
+
+
 </center>
 {% endblock %}
 
