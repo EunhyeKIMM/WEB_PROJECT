@@ -1,11 +1,16 @@
 # from typing import List
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.contrib.auth.hashers import make_password, check_password # 비밀번호 암호화 / 패스워드 체크
-from .models import User
-from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import make_password # 비밀번호 암호화
+from django.contrib.auth import update_session_auth_hash, logout
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
 from .models import User
+from .form import CheckPasswordForm, CustomUserChangeForm
+# from user.form import CustomUserChangeForm
+
 # Create your views here.
 
 def register(request):  # 회원가입 함수
@@ -56,11 +61,58 @@ def userPage(request):  # 유저 마이페이지
     return render(request, 'mypage.html', context=context)
 
 
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, '비밀번호가 성공적으로 변경되었습니다!')
+            return redirect('/')
+        else:
+            messages.error(request, '비밀번호가 맞지 않습니다.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {'form': form})
+
+@login_required
+def delete(request):
+    if request.method == 'POST':
+        password_form = CheckPasswordForm(request.user, request.POST)
+        
+        if password_form.is_valid():
+            request.user.delete()
+            logout(request)
+            messages.success(request, "회원탈퇴가 완료되었습니다.")
+            return redirect('/accounts/login/')
+    else:
+        password_form = CheckPasswordForm(request.user)
+
+    return render(request, 'user_delete.html', {'password_form':password_form})
 
 
 
+@login_required
+def update(request):
+    if request.method == 'GET':
+        return render(request, 'user_update.html')
 
+    elif request.method == 'POST':
+        user=request.user
 
+        username = request.POST.get('username')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        phone = request.POST.get('phone')
+
+        user.username = username
+        user.gender = gender
+        user.age = age
+        user.phone = phone
+        user.save()
+        return redirect('/user/')
+        
 
 # def login(request):
 #     response_data = {}

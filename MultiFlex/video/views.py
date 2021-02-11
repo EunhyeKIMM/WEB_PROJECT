@@ -24,7 +24,7 @@ class VideoUploadView(CreateView, LoginRequiredMixin):
     success_url = reverse_lazy('video:upload_Video') # 추후에 Detail로 변경 
 
 
-class VideoUpdateView(UpdateView, OwnerOnlyMixin):
+class VideoUpdateView(UpdateView):
     model = Video
     template_name = 'video/video_upload_form.html'
     fields = ['title', 'description', 'genre', 'release_dt', 'running_time', 'director', 'video_type', 'grade' ]
@@ -33,7 +33,7 @@ class VideoUpdateView(UpdateView, OwnerOnlyMixin):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id})
 
 
-class VideoDeleteView(DeleteView, OwnerOnlyMixin):
+class VideoDeleteView(DeleteView):
     model = Video
     template_name = 'video/video_delete_confirm.html'
     success_url = reverse_lazy('video:upload_Video') # Index 페이지로 바꿔야 함. 
@@ -174,7 +174,7 @@ class SearchView(FormView):
         context['object_list'] = video_list
 
         return render(self.request, self.template_name, context)
-    
+
 
 class TagCloudTV(TemplateView):
     template_name = 'taggit/taggit_cloud.html'
