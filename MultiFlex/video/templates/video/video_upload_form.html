@@ -2,7 +2,7 @@
 {% load widget_tweaks %} 
 
 {% block title %}video_upload_from.html{% endblock %}
-
+{block extra-style%}
 {% block content %}
 <div class="container">
     <center>
@@ -11,70 +11,71 @@
         <p>동영상을 업로드 해주세요.</p> 
         <br>
     </center>
-
+</div>
+<div class="container" id="container2">
     {% if form.errors %} 
-    <div class="alert alert-danger"> 
+    <div class="alert alert-danger" id="rv-form2"> 
         <div class="font-weight-bold">
             Wrong! Please correct the error(s) below.</div> 
         {{ form.errors }} 
     </div> 
     {% endif %}
-    <form action="." method="post" enctype="multipart/form-data" class="card pt-3" >{% csrf_token %} 
-        <div class="form-group row"> 
+    <form action="." method="post" enctype="multipart/form-data" class="card pt-3" id="card2">{% csrf_token %} 
+        <div class="form-group row" id="form-group2"> 
             {{ form.title|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-5"> 
                 {{ form.title|add_class:"form-control"|attr:"autofocus" }} 
             </div> 
         </div> 
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.description|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.description|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.video_link|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.video_link|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.video_thumb|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.video_thumb|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.release_dt|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.release_dt|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.genre|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.genre|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.running_time|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.running_time|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.director|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.director|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.video_type|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.video_type|add_class:"form-control" }}
             </div> 
         </div>
-        <div class="form-group row"> 
+        <div class="form-group row" id="form-group2"> 
             {{ form.grade|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
             <div class="col-sm-8"> 
                 {{ form.grade|add_class:"form-control" }}
@@ -88,4 +89,4 @@
     </form> 
 </div>
 {% endblock %}
-
+</div>

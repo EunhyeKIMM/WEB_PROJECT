@@ -142,26 +142,24 @@
     {% get_tagcloud as tags %}
     {% for tag in tags %}
     <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">{{tag.name}}</div>
+    {% for video in video_list %}
+    {% get_tags_for_object video as "genre" %}
+    {% for ta in genre %}
+        {% if ta == tag %}
+    
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            {% for video in video_list %}
-                {% get_tags_for_object video as "genre" %}
-                {% for ta in genre %}
-                    {% if ta == tag %}
-                    <div class="swiper-slide">
+ 
+                    <div>
                         <a href="{{value.get_absolute_url}}">
-                            <img id='slider' src="{{ value.video_thumb }}">
+                            <img src="{{ value.video_thumb }}">
                         </a>
                     </div>
                     {% endif %}
                 {% endfor %}
             {%endfor%}
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- 버튼 -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+
     </div>
     <br><br><br>
     {% endfor %}
