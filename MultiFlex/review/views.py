@@ -24,7 +24,7 @@ class ReviewDeleteView(DeleteView, OwnerOnlyMixin):
     def get_success_url(self):
         return reverse('video:video_detail', kwargs={'pk':self.object.video_id_id})
 
-class ReviewDV(DetailView):
+class ReviewDV(DetailView,FormMixin):
     model = Review
     template_name = 'review/review_detail.html'
     context_object_name = 'review'

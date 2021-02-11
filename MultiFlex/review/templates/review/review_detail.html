@@ -5,7 +5,9 @@
 {% block content %}
 
 <h1>{{review.re_title}}</h1>
-{{ review.content }}
+작성자 : {{review.user_id}}
+<br>
+{{ review.content|safe }}
 
 
 
