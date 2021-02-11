@@ -29,6 +29,8 @@
 
 
 {% block content %}
+<br>
+<div class="video1">
 <div class="video1" style="text-align: center;">
     <iframe width="1000" height="480" src="{{ video.video_link }}" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -39,6 +41,10 @@
             <h1>{{video.title}} </h1>
         </div>
             <div class="box2" style="text-align: right;">
+                {% if user.is_admin %}
+                <button type="button" class="btn btn-info btn-sm"><a href="{% url 'video:update_Video' video.video_id %}" style="color: white;">영상 수정</a></button>
+                <button type="button" class="btn btn-danger btn-sm"><a href="{% url 'video:delete_Video' video.video_id %}" style="color: white;">영상 삭제</a></button>
+                {% endif %}
                 <input id="likey" type="button" class="btn btn-info btn-sm like btn-danger" name="{{video.video_id}}" value="좋아요 {{video.recommend.all.count}}개" >
                 <input type="button" class="btn btn-info btn-sm dibs btn-danger" name="{{video.video_id}}" value="{{how_dib}}">
             </div>
@@ -87,7 +93,11 @@
             {% for review in page_obj %}
             <tr align="center">
                 <td width="600px">
-                    <a href="#">{{review.re_title}}</a>
+                    <a href="{% url 'review:review_detail' review.id %}">{{review.re_title}}</a>
+                    {% if user_id == review.user_id %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-info btn-sm"><a href="{% url 'review:update_review' review.id %}">수정</a></button>
+                    <button type="button" class="btn btn-danger btn-sm"><a href="{% url 'review:delete_review' review.id %}">삭제</a></button>
+                    {% endif %}
                 </td>
                 <td width="100px">{{review.user_id}}</td>
                 <td>{{review.create_dt}}</td>
@@ -172,9 +182,10 @@
             </div>
         </form> 
     </div>
-</>
+
 <br><br><br>
 {% endblock %}
+
 
 {% block extra-script %} 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> 

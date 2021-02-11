@@ -1,37 +1,10 @@
-{%extends "base.html"%}
+{%extends "mypage_bar.html"%}
 {%load widget_tweaks%}
 
-{%block title%}mypage.html{%endblock%}
+{%block title%}myreview.html{%endblock%}
 
-{% block extra-style %}
 
-<style>
-  #option1 {
-      text-decoration : none;
-      color: aliceblue;
-  }
-</style>
-
-{% endblock %}
-
-{%block content%}
-    <h1>{{user.username}}의 My page</h1>
-    <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-        <label class="btn btn-secondary active">
-          <a type="radio" name="options" id="option1" autocomplete="off" href='{% url "mypage" %}'> 계정 </a>
-        </label>
-        <label class="btn btn-secondary">
-          <a type="radio" name="options" id="option1" autocomplete="off" href='#'> 나의 컨텐츠 </a>
-        </label>
-        <label class="btn btn-secondary">
-          <a type="radio" name="options" id="option1" autocomplete="off" href='#' checked> 내가 쓴 리뷰 </a>
-        </label>
-        <label class="btn btn-secondary">
-          <a type="radio" name="options" id="option1" autocomplete="off" href='#'> 관심 태그 </a>
-        </label>
-    </div>
-
-    
+{%block mypage-content%}
     <table class="table">
       
       <thead>
@@ -50,13 +23,15 @@
               <td>{{ review.id }}</td>
               <td>{{review.video_id}}</td>
               <td>
-                  <a href="#" target="_blank">{{review.re_title}}</a>
+                  <a href="{% url 'review:review_detail' review.id %}" target="_blank">{{review.re_title}}</a>
               </td>
               <td>{{ review.content }}</td>
               <td>{{ review.create_dt }}</td>
           </tr>
           {%endfor%}
       </tbody>
+  
       
     </table>
+  </div>
 {%endblock%}

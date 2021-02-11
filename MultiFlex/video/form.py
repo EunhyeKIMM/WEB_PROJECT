@@ -14,4 +14,4 @@ class ReviewForm(forms.ModelForm):
 
 
 class PostSearchForm(forms.Form):
-    search_word = forms.CharField(label='Search Word')
+    search_word = forms.CharField(label='검색어를 입력하세요.')

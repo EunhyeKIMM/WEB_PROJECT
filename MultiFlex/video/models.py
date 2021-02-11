@@ -48,3 +48,6 @@ class Video(models.Model):
 
     def count_like_user(self):
         return self.recommend.count()
+
+    def tagtag(self):
+        return self.genre.all()

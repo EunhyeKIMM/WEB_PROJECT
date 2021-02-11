@@ -36,3 +36,8 @@ class MainHomeView(ListView):
 
 class UserCreateDoneTV(TemplateView):
     template_name = 'register_done.html'
+
+
+class SiteInfoView(TemplateView):
+    template_name = 'site_info.html'
+    
