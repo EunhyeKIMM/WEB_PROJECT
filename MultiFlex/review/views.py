@@ -37,6 +37,7 @@ class ReviewDV(DetailView):
 class ReviewList(ListView):
     model = Review
     template_name = 'review/myreview.html'
+    paginate_by = 10
 
     def get_queryset(self):
         # return Review.objects.all()
