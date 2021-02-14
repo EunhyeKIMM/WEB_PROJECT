@@ -19,11 +19,15 @@ class Review(models.Model):
         return self.re_title
 
     def get_absolute_url(self):
-        return reverse('/video/<int:pk>/video_detail/', args=(self.video_id,))
+        return reverse('/video/<int:pk>/video_detail/', args=(self.video_id,)) 
 
 class Comment(models.Model):
     document = models.ForeignKey(Review,on_delete=models.CASCADE)
     author = models.ForeignKey(User,on_delete=models.SET_NULL, null=True, verbose_name="작성자")
-    text = models.TextField()
+    # text = models.TextField()
+    text = models.CharField(verbose_name="TEXT", max_length=100)
     create_dt = models.DateTimeField(verbose_name="작성일자", auto_now_add=True)
     modify_dt = models.DateTimeField(verbose_name="수정일자", auto_now=True)
+
+    def __str__(self):
+        return self.text
