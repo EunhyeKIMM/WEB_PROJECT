@@ -27,7 +27,7 @@ class MainHomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['top_10'] = Video.objects.all().order_by('-like')[:10]
-    
+        
         theme = self.request.GET.get('theme')       
         if theme : 
             self.request.session['theme']=theme

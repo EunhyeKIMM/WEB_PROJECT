@@ -118,7 +118,9 @@
 
 
 <center>
-    <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 100%; ">Top 10</div>
+
+
+    <div class="container-fluid text-light" style="background-color: rgb(50, 50, 55); width: 100%; ">Top 10</div>
     <div class="swiper-container">
         <div class="swiper-wrapper">
             {%for value in top_10 %}
@@ -139,16 +141,20 @@
     <br><br><br>
     {% get_tagcloud as tags %}
     {% for tag in tags %}
-    <div class="container text-light" style="background-color: rgb(50, 50, 55); width: 900px;">{{tag.name}}</div>
+    <div class="container-fluid text-light" style="background-color: rgb(50, 50, 55); margin: 0;">{{tag.name}}</div>
+    
+    
+        
+    
     <div class="swiper-container">
         <div class="swiper-wrapper">
             {% for video in video_list %}
-                {% get_tags_for_object video as "genre" %}
-                {% for ta in genre %}
-                    {% if ta == tag %}
+            {% get_tags_for_object video as "genre" %}
+            {% for ta in genre %}
+            {% if ta == tag %}
                     <div class="swiper-slide">
-                        <a href="{{value.get_absolute_url}}">
-                            <img id='slider' src="{{ value.video_thumb }}">
+                        <a href="{{video.get_absolute_url}}">
+                            <img id='slider' src="{{ video.video_thumb }}">
                         </a>
                     </div>
                     {% endif %}
