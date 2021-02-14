@@ -4,12 +4,18 @@
 {% load widget_tweaks %} 
 {% block content %}
 
-<h1>{{review.re_title}}</h1>
-작성자 : {{review.user_id}}
-<br>
-{{ review.content|safe }}
-
-
+<div class = "container">
+    <div style="text-align: center;">
+        <h2>{{review.re_title}}</h2>
+        작성자 : {{review.user_id}}
+        <br><br><br>
+        <h4>{{ review.content|safe }}</h4>
+        <button type="button" class="btn btn-info btn-sm"><a href="{% url 'review:update_review' review.id %}" style="color: white;">리뷰 수정</a></button>
+        <button type="button" class="btn btn-danger btn-sm"><a href="{% url 'review:delete_review' review.id %}" style="color: white;">리뷰 삭제</a></button>
+        <div style="text-align: center;">
+            <hr width="97%" color="white" size="1">
+    </div>
+</div>
 
 
 <div class = "container">
@@ -25,10 +31,12 @@
                 <div class = "media">
                     <div class = "media-body">
                         <h4 class = "media-heading user_name">
-                            {{comment.author}}
+                            {{comment.text}}
                         </h4>
-                        {{comment.text}}
-                        <hr>
+                        {{comment.author}}
+                        <div style="text-align: center;">
+                            <hr width="100%" color="white" size="1">
+                    </div>
                     </div>
                 </div>
                 {% endfor %}
