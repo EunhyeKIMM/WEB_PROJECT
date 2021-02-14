@@ -21,7 +21,7 @@
             </div>
             <!--댓글 목록-->
             <div class = "comments-list">
-                {% for comment in comment_list %}
+                {% for comment in page_obj %}
                 <div class = "media">
                     <div class = "media-body">
                         <h4 class = "media-heading user_name">
@@ -33,6 +33,29 @@
                 </div>
                 {% endfor %}
             </div>
+            <div class="pagination justify-content-center">
+
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+                {% endif %}
+                
+            
+            
+                {%for i in page_obj.paginator.page_range%}
+                {%if page_obj.number == i%}
+                <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                {%else%}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {%endif%}
+                {%endfor%}
+        
+        
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                {% endif %}
+        
+              </div>
+        
             <!--댓글 작성-->
             <div class="container" id="container2">
                 <br>

@@ -25,7 +25,7 @@
               <td>
                   <a href="{% url 'review:review_detail' review.id %}" target="_blank">{{review.re_title}}</a>
               </td>
-              <td>{{ review.content }}</td>
+              <td>{{ review.content|safe }}</td>
               <td>{{ review.create_dt }}</td>
           </tr>
           {%endfor%}

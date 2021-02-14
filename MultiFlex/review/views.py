@@ -6,6 +6,7 @@ from video.models import *
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
 from django.views.generic.edit import FormMixin
+from django.core.paginator import Paginator
 
 class ReviewUpdateView(UpdateView, OwnerOnlyMixin):
     model = Review
@@ -36,8 +37,17 @@ class ReviewDV(DetailView,FormMixin):
         # if count_view.owner != self.request.user:
         #     count_view.read_cnt = count_view.read_cnt + 1
         #     count_view.save()
+
         review = context['review']
-        comment_list = review.comment_set.all()
+        comment_list = review.comment_set.all().order_by('-create_dt')
+        paginator = Paginator(comment_list,5)
+        
+        page_number = self.request.GET.get('page') # 현재 페이지 받아옴
+        page_obj = paginator.get_page(page_number) # 현재 페이지에 있는 목록
+
+        context['paginator'] = paginator
+        context['page_obj'] = page_obj
+
         context['comment_list']= comment_list
         context['form'] = CommentForm(initial={'text':'',})
         context['user_id'] = self.request.user        
