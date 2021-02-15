@@ -33,10 +33,10 @@ class ReviewDV(DetailView,FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # count_view = self.get_object()
-        # if count_view.owner != self.request.user:
-        #     count_view.read_cnt = count_view.read_cnt + 1
-        #     count_view.save()
+        count_view = self.get_object()
+        if count_view.user_id != self.request.user:
+            count_view.read_cnt = count_view.read_cnt + 1
+            count_view.save()
 
         review = context['review']
         comment_list = review.comment_set.all().order_by('-create_dt')
