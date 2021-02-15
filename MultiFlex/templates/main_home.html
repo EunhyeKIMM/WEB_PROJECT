@@ -171,18 +171,16 @@
 {% block extra-script %}
 <script>
     function detectMediaSize() { 
+        console.log('size detect')
     if ( window.matchMedia('(min-width: 0px) and (max-width: 750px)').matches ) {
-        // console.log('Mobile');
+        console.log('Mobile');
         var swiper = new Swiper('.swiper-container', {
         slidesPerView: 1,
         spaceBetween: 30,
         slidesPerGroup: 1,
         loop: true,
         loopFillGroupWithBlank: true,
-<<<<<<< HEAD
 
-=======
->>>>>>> master
         // autoplay: {
         //     delay: 2500,
         //     disableOnInteraction: false,
@@ -197,7 +195,8 @@
         },
     });
     } else if ( window.matchMedia('(min-width: 750px) and (max-width: 1450px)').matches ) {
-        // console.log('Tablet');
+        console.log('Tablet');
+
         var swiper = new Swiper('.swiper-container', {
         slidesPerView: 2,
         spaceBetween: 30,
@@ -219,7 +218,7 @@
         },
     });
     } else {
-        // console.log('PC');
+        console.log('PC');
         var swiper = new Swiper('.swiper-container', {
         slidesPerView: 4,
         spaceBetween: 30,

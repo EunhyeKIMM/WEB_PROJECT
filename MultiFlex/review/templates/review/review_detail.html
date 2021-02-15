@@ -31,7 +31,9 @@
                 <div class = "media">
                     <div class = "media-body">
                         <h4 class = "media-heading user_name">
-                            {{comment.text}}
+                            {{comment.text}} 
+                            <button type="button" class="btn btn-info btn-sm"><a href="{% url 'review:update_comment' comment.id %}" style="color: white;">댓글 수정</a></button>
+                            <button type="button" class="btn btn-danger btn-sm"><a href="{% url 'review:delete_comment' comment.id %}" style="color: white;">댓글 삭제</a></button>
                         </h4>
                         {{comment.author}}
                         <div style="text-align: center;">

@@ -82,6 +82,21 @@ class ReviewList(ListView):
         # return Review.objects.all()
         return Review.objects.filter(user_id = self.request.user)
 
+class CommentUpdateView(UpdateView, OwnerOnlyMixin):
+    model = Comment
+    template_name = 'review/comment_upload_form.html'
+    fields = ['text']
+
+    def get_success_url(self):
+        return reverse('review:review_detail', kwargs={'pk':self.object.document_id})
+
+class CommentDeleteView(DeleteView, OwnerOnlyMixin):
+    model = Comment
+    template_name = 'review/comment_delete_confirm.html'
+    success_url = reverse_lazy('comment:add_comment')
+
+    def get_success_url(self):
+        return reverse('review:review_detail', kwargs={'pk':self.object.pk})
 
 # class CommentCV(LoginRequiredMixin,CreateView): #redirect로 action동작에 연결해준다
 #     http_method_names = ['post']

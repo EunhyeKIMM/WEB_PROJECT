@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% load widget_tweaks %} 
+
+{% block title %}comment_delete_form.html{% endblock %}
+
+{% block content %}
+<center>
+    <div class="container">
+    <br><br><br><br><br>
+    <hr width="80%" color="#D3D3D3" size="1">
+    <br><br><br>
+    <h1>댓글 삭제</h1>
+    <br><br>
+
+    <form action="." method="post">{% csrf_token %}
+        <p>정말로 "{{ object }}" 댓글을 삭제 하시겠습니까?</p>
+        <p>한번 삭제하시면 복구 할 수 없습니다.</p><br><br>
+        <input type="submit" value="삭제하기" class="btn btn-danger btn-sm" />
+        <br><br><br><br>
+        <hr width="80%" color="#D3D3D3" size="1">
+    </form>
+</div>
+</center>
+
+{% endblock %}

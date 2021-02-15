@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% load widget_tweaks %} 
+
+{% block title %}review_update_form.html{% endblock %}
+
+{% block content %}
+    <center>
+        <div class="container">
+        <br>
+        <br><br><br>
+        <h1>댓글 수정</h1>
+        <br><br><br>
+        
+        <div class="container" id="container2">
+
+        {% if form.errors %} 
+        <div class="alert alert-danger" id="rv-form2"> 
+            <div class="font-weight-bold">
+                Wrong! Please correct the error(s) below.</div> 
+            {{ form.errors }} 
+        </div> 
+        {% endif %}
+        <form action="." method="post">{% csrf_token %} 
+            <div class="form-group row" id="form-group2" style="color: white;">  
+                {{ form.text|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+                <div class="col-sm-5"> 
+                    {{ form.text|add_class:"form-control"}} 
+                </div> 
+            </div> 
+                <input type="submit" value="댓글 수정" class="btn btn-info"/>
+            </div>
+        </form> 
+    </div>
+    </center>
+{% endblock %}
