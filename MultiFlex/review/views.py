@@ -96,7 +96,7 @@ class CommentDeleteView(DeleteView, OwnerOnlyMixin):
     success_url = reverse_lazy('comment:add_comment')
 
     def get_success_url(self):
-        return reverse('review:review_detail', kwargs={'pk':self.object.pk})
+        return reverse('review:review_detail', kwargs={'pk':self.object.document_id})
 
 # class CommentCV(LoginRequiredMixin,CreateView): #redirect로 action동작에 연결해준다
 #     http_method_names = ['post']
