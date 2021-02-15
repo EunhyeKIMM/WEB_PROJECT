@@ -76,7 +76,7 @@
                 {% endif %}
                 
                 <form action="." method="post">{% csrf_token %} 
-                    <div class="form-group row" id="form-group2">  
+                    <div class="form-group row" id="form-group2" style="color: white;">  
                         {{ form.text|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
                         <div class="col-sm-5"> 
                             {{ form.text|add_class:"form-control"}} 
