@@ -21,6 +21,12 @@
         </div> 
         {% endif %}
         <form action="." method="post"  class="card pt-3" id="card2">{% csrf_token %} 
+            <div class="form-group row" id="form-group2">  
+                {{ form.re_title|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
+                <div class="col-sm-5"> 
+                    {{ form.re_title|add_class:"form-control"}} 
+                </div> 
+            </div>
             <div class="form-group row" id="form-group2"> 
                 {{ form.content|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }} 
                 <div class="col-sm-8"> 
